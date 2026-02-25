@@ -4219,7 +4219,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -58.093, y: -65}
+  m_AnchoredPosition: {x: -43, y: -74}
   m_SizeDelta: {x: 173.81, y: 37.272}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &251065558
@@ -7173,7 +7173,7 @@ GameObject:
   - component: {fileID: 449694496}
   - component: {fileID: 449694495}
   m_Layer: 10
-  m_Name: Terrain
+  m_Name: SpringTerrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7194,7 +7194,7 @@ TerrainCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
   m_TerrainData: {fileID: 15600000, guid: d6ac23405a2f39476b5a302037da3010, type: 2}
@@ -9794,7 +9794,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -67.827, y: -65}
+  m_AnchoredPosition: {x: -42, y: -75}
   m_SizeDelta: {x: 193.282, y: 37.2728}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &603587708
