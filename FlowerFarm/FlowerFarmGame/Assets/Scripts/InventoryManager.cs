@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject InventoryBanner;
     public GameObject Crosshair;
     private bool menuActivated;
+
+    public ItemSlot[] itemSlot;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -60,8 +63,18 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddItem(string itemName, int quantity)
+    public void AddItem(string itemName, int quantity, Sprite itemSprite)
     {
         Debug.Log("itemName = " + itemName + "quantity = " + quantity);
+
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            if(itemSlot[i].isFull == false)
+            {
+                itemSlot[i].AddItem(itemName, quantity, itemSprite);
+                return;
+            }
+        }
+
     }
 }

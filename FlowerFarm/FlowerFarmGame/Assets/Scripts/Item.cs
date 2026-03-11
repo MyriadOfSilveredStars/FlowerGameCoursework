@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 
@@ -11,6 +12,9 @@ public class Item : MonoBehaviour, IInteractable
 
     [SerializeField]
     private int quantity; //the quantity given when picked up
+
+    [SerializeField]
+    private Sprite sprite; //the image used in the inventory
 
     private InventoryManager inventoryManager;
 
@@ -29,6 +33,7 @@ public class Item : MonoBehaviour, IInteractable
     public void Interact()
     {
         Debug.Log("A hit, a fine hit!");
-        inventoryManager.AddItem(itemName, quantity);
+        inventoryManager.AddItem(itemName, quantity, sprite);
+        Destroy(gameObject);
     }
 }

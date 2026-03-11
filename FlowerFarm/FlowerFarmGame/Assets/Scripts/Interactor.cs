@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 interface IInteractable
 {
@@ -9,6 +10,9 @@ interface IInteractable
 
 public class Interactor : MonoBehaviour
 {
+    public GameObject Crosshair;
+    public GameObject InteractPromptCrosshair;
+
     public Transform InteractorSource;
     public float InteractRange;
 
@@ -19,17 +23,24 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("Interact Key Pressed");
-            Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
-            if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
+        Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
+        if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
             {
-                if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObject))
+            if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObject))
+            {
+                Crosshair.SetActive(false);
+                InteractPromptCrosshair.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     interactObject.Interact();
                 }
+                
             }
-        }
+            else
+            {
+                Crosshair.SetActive(true);
+                InteractPromptCrosshair.SetActive(false);
+            }
+            }
     }
 }
