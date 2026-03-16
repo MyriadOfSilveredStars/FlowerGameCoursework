@@ -49,9 +49,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: ecf87fc19cd295f41b8a51ee631a2d00, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7cf78574bcfb81645b2940054adbaba8, type: 2}
+      objectReference: {fileID: -876546973899608171, guid: 0771267a6bc798d46a1eb4393a148e35, type: 3}
     - target: {fileID: 919132149155446097, guid: ecf87fc19cd295f41b8a51ee631a2d00, type: 3}
       propertyPath: m_Name
       value: Flover_01

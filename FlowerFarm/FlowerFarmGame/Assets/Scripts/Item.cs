@@ -16,6 +16,10 @@ public class Item : MonoBehaviour, IInteractable
     [SerializeField]
     private Sprite sprite; //the image used in the inventory
 
+    [TextArea]
+    [SerializeField]
+    private string itemDescription;
+
     private InventoryManager inventoryManager;
 
 
@@ -33,7 +37,7 @@ public class Item : MonoBehaviour, IInteractable
     public void Interact()
     {
         Debug.Log("A hit, a fine hit!");
-        inventoryManager.AddItem(itemName, quantity, sprite);
+        inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
         Destroy(gameObject);
     }
 }

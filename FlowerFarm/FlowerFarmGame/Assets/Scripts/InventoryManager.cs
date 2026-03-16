@@ -9,6 +9,10 @@ public class InventoryManager : MonoBehaviour
     public GameObject PlayerHUD;
     public GameObject InventoryBanner;
     public GameObject Crosshair;
+
+    public GameObject bouquetMenu;
+    public GameObject bouquetOptions;
+
     private bool menuActivated;
 
     public ItemSlot[] itemSlot;
@@ -32,6 +36,10 @@ public class InventoryManager : MonoBehaviour
             //when inventory closed, deactivate menu and reactivate HUD
             InventoryMenu.SetActive(false);
             InventoryBanner.SetActive(false);
+            bouquetMenu.SetActive(false);
+            bouquetOptions.SetActive(false);
+
+
             PlayerHUD.SetActive(true);
             Crosshair.SetActive(true);
 
@@ -63,18 +71,26 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddItem(string itemName, int quantity, Sprite itemSprite)
+    public void AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
     {
-        Debug.Log("itemName = " + itemName + "quantity = " + quantity);
+        Debug.Log("itemName = " + itemName + " | quantity = " + quantity + " | description: " + itemDescription);
 
         for (int i = 0; i < itemSlot.Length; i++)
         {
             if(itemSlot[i].isFull == false)
             {
-                itemSlot[i].AddItem(itemName, quantity, itemSprite);
+                itemSlot[i].AddItem(itemName, quantity, itemSprite, itemDescription);
                 return;
             }
         }
+    }
 
+    public void DeselectAllSlots()
+    {
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            itemSlot[i].selectedShader.SetActive(false);
+            itemSlot[i].thisItemSelected = false;
+        }
     }
 }
