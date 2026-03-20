@@ -59,6 +59,8 @@ public class InventoryManager : MonoBehaviour
             InventoryBanner.SetActive(true);
             PlayerHUD.SetActive(false);
             Crosshair.SetActive(false);
+            bouquetMenu.SetActive(false);
+            bouquetOptions.SetActive(false);
 
             menuActivated = true;
 
