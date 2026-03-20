@@ -17,6 +17,8 @@ public class InventoryManager : MonoBehaviour
 
     public ItemSlot[] itemSlot;
 
+    public ItemSO[] itemSOs;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -70,6 +72,17 @@ public class InventoryManager : MonoBehaviour
 
             //pause the game
             Time.timeScale = 0;
+        }
+    }
+
+    public void SellItem(string itemName)
+    {
+        for (int i = 0; i < itemSOs.Length; i++)
+        {
+            if(itemSOs[i].itemName == itemName)
+            {
+                itemSOs[i].SellItem();
+            }
         }
     }
 
