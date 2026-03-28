@@ -12,12 +12,13 @@ public class PlantingSpot : MonoBehaviour, IInteractable
     private int daysPlanted;
     private bool canBeGathered;
 
-    public ItemHolding heldItem;
+    private ItemHolding heldItem;
 
     private void Start(){ //when the game starts, all spots are empty
         hasPlant = false;
         daysPlanted = 0;
         canBeGathered = false;
+        heldItem = null;
 
     }
 
@@ -28,19 +29,27 @@ public class PlantingSpot : MonoBehaviour, IInteractable
 
     public void plantSeed()
     {
-        if (!hasPlant) //if there isn't already a plant here, plant one
+        try
         {
-            if(heldItem != null && heldItem.heldItem.isSeed)
+            if (!hasPlant) //if there isn't already a plant here, plant one
             {
-                hasPlant = true;
-                Debug.Log("You've planted a " + heldItem.heldItem.itemName + "!");
+                if(heldItem != null && heldItem.heldItem.isSeed)
+                {
+                    hasPlant = true;
+                    Debug.Log("You've planted a " + heldItem.heldItem.itemName + "!");
+                }
+                else if (!heldItem.heldItem.isSeed)
+                {
+                    Debug.Log("You can't plant that, it's not a seed!");
+                }
+                
             }
-            else if (!heldItem.heldItem.isSeed)
-            {
-                Debug.Log("You can't plant that, it's not a seed!");
-            }
-            
         }
+        catch
+        {
+            Debug.Log("You aren't holding anything to plant!");
+        }
+        
     }
 
     public void harvestFlower()
