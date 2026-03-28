@@ -1,8 +1,9 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using TMPro;
 
 public class FlowerMerchant : MonoBehaviour, IInteractable 
 {
@@ -14,6 +15,10 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
     public GameObject InteractCrosshair;
     
     private bool menuOpen;
+
+    public TMP_Text dialogue;
+
+    [TextArea] public string[] dialogueOptions;
 
     void Start()
     {
@@ -55,6 +60,13 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
         Time.timeScale = 0;
 
         menuOpen = true;
+        dialogue.text = dialogueOptions[randomDialogue()];
         
+    }
+
+    private int randomDialogue()
+    {
+        int option = Random.Range(0, 7);
+        return option;
     }
 }

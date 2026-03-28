@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
@@ -19,6 +20,9 @@ public class InventoryManager : MonoBehaviour
 
     public ItemSO[] itemSOs;
 
+    public int money;
+    public TMP_Text moneyText;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,6 +31,9 @@ public class InventoryManager : MonoBehaviour
         InventoryBanner.SetActive(false);
         PlayerHUD.SetActive(true);
         Crosshair.SetActive(true);
+
+        money = 100;
+        moneyText.text = "£" + money.ToString();
     }
 
     // Update is called once per frame
@@ -73,17 +80,7 @@ public class InventoryManager : MonoBehaviour
             //pause the game
             Time.timeScale = 0;
         }
-    }
-
-    public void SellItem(string itemName)
-    {
-        for (int i = 0; i < itemSOs.Length; i++)
-        {
-            if(itemSOs[i].itemName == itemName)
-            {
-                itemSOs[i].SellItem();
-            }
-        }
+        moneyText.text = "£" + money.ToString(); //update the money to reflect its current value
     }
 
     public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)

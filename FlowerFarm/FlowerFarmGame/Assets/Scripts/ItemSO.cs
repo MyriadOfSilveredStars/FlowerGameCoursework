@@ -1,35 +1,22 @@
+using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "New Item")]
 public class ItemSO : ScriptableObject
 {
+    [Header("Item Data")]
     public string itemName;
-    public StatToChange statToChange = new StatToChange();
-    public int amountToChangeStat;
+    [TextArea]
+    public string itemDescription;
+    public Sprite inventoryIcon;
 
-    public void BuySeeds()
-    {
-        return;
-    }
-    public void SellItem()
-    {
-        return;
-    }
+    [Header("Item Stats")]
+    public int growTime;
+    public int buyPrice;
+    public int sellPrice;
+    public bool isFlower;
+    public bool isBouquet;
 
-    public void Grow()
-    {
-        return;
-    }
-
-
-
-
-
-    public enum StatToChange
-    {
-        none,
-        price, //how much it costs to buy the seeds
-        sellprice, //how much it sells for
-        growtime //tracks how long the flower will take to grow in days
-    };
 }
