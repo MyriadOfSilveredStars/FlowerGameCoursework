@@ -15,6 +15,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public bool isFull;
     public string itemDescription;
 
+    public ItemSO itemSO;
+
     //ITEM SLOT
     [SerializeField]
     private TMP_Text quantityText;
@@ -29,6 +31,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public GameObject selectedShader;
     public bool thisItemSelected;
     private InventoryManager inventoryManager;
+    private ItemHolding holdItem;
 
     [SerializeField]
     private int maxNumberOfItems;
@@ -36,9 +39,10 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     private void Start()
     {
         inventoryManager = GameObject.Find("Canvas - Inventory").GetComponent<InventoryManager>();
+        holdItem = GameObject.Find("Canvas - HUD").GetComponent<ItemHolding>();
     }
 
-    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription, ItemSO itemSO)
     {
         //Check to see if the slot is already full
         if (isFull)
@@ -46,15 +50,18 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             return quantity;
         }
 
+        //update what is being held
+        this.itemSO = itemSO;
+
         //Update NAME
-        this.itemName = itemName;
+        this.itemName = itemSO.itemName;
 
         //Update image
-        this.itemSprite = itemSprite;
-        itemImage.sprite = itemSprite;
+        this.itemSprite = itemSO.inventoryIcon;
+        itemImage.sprite = itemSO.inventoryIcon;
 
         //Update description
-        this.itemDescription = itemDescription;
+        this.itemDescription = itemSO.itemDescription;
 
         //Update quantity
         this.quantity += quantity;
@@ -101,6 +108,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
         ItemDescriptionNameText.text = itemName;
         ItemDescriptionText.text = itemDescription;
+        holdItem.HoldItem(itemSO);
     }
 
     public void OnRightClick()

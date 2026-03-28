@@ -48,7 +48,7 @@ public class ShopManager : MonoBehaviour
             Debug.Log("Buying " + itemSO.itemName + " for £" + price.ToString());
             inventoryManager.money -= price;
             moneyText.text = "£" + inventoryManager.money.ToString();
-            inventoryManager.AddItem(itemSO.itemName, 1, itemSO.inventoryIcon, itemSO.itemDescription);
+            inventoryManager.AddItem(itemSO.itemName, 1, itemSO.inventoryIcon, itemSO.itemDescription, itemSO);
         }
         else
         {

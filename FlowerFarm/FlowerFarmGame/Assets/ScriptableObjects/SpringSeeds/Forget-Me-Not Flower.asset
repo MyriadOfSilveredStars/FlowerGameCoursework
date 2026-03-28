@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ea17852f8a3b39ea83814cb32ab16ac, type: 3}
-  m_Name: Hyacinth
+  m_Name: Forget-Me-Not Flower
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Purple Hyacinth Seeds
-  itemDescription: Seeds to grow a patch of hyacinths
-  inventoryIcon: {fileID: 21300000, guid: 45d8921699e6b874e9bf18a24d839187, type: 3}
-  prefabName: 
-  growTime: 6
-  buyPrice: 3
-  sellPrice: 0
-  isFlower: 0
+  itemName: Forget-Me-Nots
+  itemDescription: "\"Don't Forget Me\"\n...\nSmall blue flowers. The yellow center
+    turns white when pollinated.\nSell Price: \xA31"
+  inventoryIcon: {fileID: 21300000, guid: 588fe91a465418404bc6d4dc08b2df97, type: 3}
+  prefabName: ForgetMeNot
+  growTime: 0
+  buyPrice: 0
+  sellPrice: 1
+  isFlower: 1
   isBouquet: 0
-  isSeed: 1
+  isSeed: 0

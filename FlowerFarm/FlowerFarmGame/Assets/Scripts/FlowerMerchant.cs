@@ -18,7 +18,11 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
 
     public TMP_Text dialogue;
 
-    [TextArea] public string[] dialogueOptions;
+    [TextArea] public string[] dialogueOptionsSpring;
+    [TextArea] public string[] dialogueOptionsSummer;
+    [TextArea] public string[] dialogueOptionsAutumn;
+    [TextArea] public string[] dialogueOptionsWinter;
+    [TextArea] public string[] noMoneyDialogue;
 
     void Start()
     {
@@ -60,13 +64,13 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
         Time.timeScale = 0;
 
         menuOpen = true;
-        dialogue.text = dialogueOptions[randomDialogue()];
+        dialogue.text = dialogueOptionsSpring[randomDialogue()];
         
     }
 
     private int randomDialogue()
     {
-        int option = Random.Range(0, 7);
+        int option = Random.Range(0, 6);
         return option;
     }
 }

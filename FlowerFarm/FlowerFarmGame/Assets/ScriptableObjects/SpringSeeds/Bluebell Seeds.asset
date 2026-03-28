@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ea17852f8a3b39ea83814cb32ab16ac, type: 3}
-  m_Name: Hyacinth
+  m_Name: Bluebell Seeds
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Purple Hyacinth Seeds
-  itemDescription: Seeds to grow a patch of hyacinths
+  itemName: Bluebell Seeds
+  itemDescription: Seeds to grow a patch of bluebells.
   inventoryIcon: {fileID: 21300000, guid: 45d8921699e6b874e9bf18a24d839187, type: 3}
   prefabName: 
-  growTime: 6
+  growTime: 3
   buyPrice: 3
   sellPrice: 0
   isFlower: 0

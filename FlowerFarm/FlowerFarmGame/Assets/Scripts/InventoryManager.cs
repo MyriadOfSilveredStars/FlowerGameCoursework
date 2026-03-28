@@ -83,7 +83,7 @@ public class InventoryManager : MonoBehaviour
         moneyText.text = "£" + money.ToString(); //update the money to reflect its current value
     }
 
-    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription, ItemSO itemSO)
     {
         Debug.Log("itemName = " + itemName + " | quantity = " + quantity + " | description: " + itemDescription);
 
@@ -91,10 +91,10 @@ public class InventoryManager : MonoBehaviour
         {
             if(itemSlot[i].isFull == false && itemSlot[i].itemName == itemName || itemSlot[i].quantity == 0)
             {
-                int leftOverItems = itemSlot[i].AddItem(itemName, quantity, itemSprite, itemDescription);
+                int leftOverItems = itemSlot[i].AddItem(itemName, quantity, itemSprite, itemDescription, itemSO);
                 if (leftOverItems > 0)
                 {
-                    leftOverItems = AddItem(itemName, leftOverItems, itemSprite, itemDescription);
+                    leftOverItems = AddItem(itemName, leftOverItems, itemSprite, itemDescription, itemSO);
                 }
                 return leftOverItems;
             }

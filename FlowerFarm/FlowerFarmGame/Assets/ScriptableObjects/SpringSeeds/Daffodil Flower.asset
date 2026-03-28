@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ea17852f8a3b39ea83814cb32ab16ac, type: 3}
-  m_Name: Hyacinth
+  m_Name: Daffodil Flower
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Purple Hyacinth Seeds
-  itemDescription: Seeds to grow a patch of hyacinths
-  inventoryIcon: {fileID: 21300000, guid: 45d8921699e6b874e9bf18a24d839187, type: 3}
-  prefabName: 
-  growTime: 6
-  buyPrice: 3
-  sellPrice: 0
-  isFlower: 0
+  itemName: Daffodils
+  itemDescription: "\"Respect\"\n...\nCommon flower grown from a bulb. Lies dormant
+    until Spring arrives, when the bulb will bloom. \nSell Price: \xA35"
+  inventoryIcon: {fileID: 21300000, guid: 25f1cc8275875ddc499ff3ac6b8c67f9, type: 3}
+  prefabName: Daffodils
+  growTime: 0
+  buyPrice: 0
+  sellPrice: 5
+  isFlower: 1
   isBouquet: 0
-  isSeed: 1
+  isSeed: 0

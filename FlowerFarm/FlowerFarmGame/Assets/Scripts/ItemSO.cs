@@ -11,6 +11,7 @@ public class ItemSO : ScriptableObject
     [TextArea]
     public string itemDescription;
     public Sprite inventoryIcon;
+    public string prefabName;
 
     [Header("Item Stats")]
     public int growTime;
@@ -18,5 +19,8 @@ public class ItemSO : ScriptableObject
     public int sellPrice;
     public bool isFlower;
     public bool isBouquet;
+    public bool isSeed;
+
+    
 
 }

@@ -15,8 +15,10 @@ MonoBehaviour:
   itemName: Daffodil Seeds
   itemDescription: Seeds to grow a patch of daffodils
   inventoryIcon: {fileID: 21300000, guid: 45d8921699e6b874e9bf18a24d839187, type: 3}
+  prefabName: 
   growTime: 2
   buyPrice: 4
-  sellPrice: 6
+  sellPrice: 0
   isFlower: 0
   isBouquet: 0
+  isSeed: 1

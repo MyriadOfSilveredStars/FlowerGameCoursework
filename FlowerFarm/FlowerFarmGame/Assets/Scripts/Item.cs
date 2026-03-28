@@ -16,6 +16,9 @@ public class Item : MonoBehaviour, IInteractable
     [SerializeField]
     private Sprite sprite; //the image used in the inventory
 
+    [SerializeField]
+    private ItemSO itemSO; //the item SO used to make the flower
+
     [TextArea]
     [SerializeField]
     private string itemDescription;
@@ -38,7 +41,7 @@ public class Item : MonoBehaviour, IInteractable
     {
         Debug.Log("A hit, a fine hit!");
 
-        int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription);
+        int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription, itemSO);
 
         if (leftOverItems <= 0)
         {
