@@ -24,6 +24,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private Image itemImage;  
 
+    public Sprite emptySprite;
+
     //ITEM DESCRIPTION SLOT
     public TMP_Text ItemDescriptionNameText;
     public TMP_Text ItemDescriptionText;
@@ -42,7 +44,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         holdItem = GameObject.Find("Canvas - HUD").GetComponent<ItemHolding>();
     }
 
-    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription, ItemSO itemSO)
+    public int AddItem(int quantity, ItemSO itemSO)
     {
         //Check to see if the slot is already full
         if (isFull)
@@ -88,6 +90,22 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     }
 
+    public void RemoveItem(ItemSO itemSO, int quantity)
+    {
+        if (quantity == 0)
+        {
+            EmptySlot();
+        }
+        else
+        {
+            this.quantity = quantity;
+            //update quantity text
+            quantityText.text = this.quantity.ToString();
+            quantityText.enabled = true;
+        }
+        
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if(eventData.button == PointerEventData.InputButton.Left)
@@ -100,19 +118,43 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    public void EmptySlot()
+    {
+        quantityText.enabled = false;
+        itemImage.sprite = emptySprite;
+
+        ItemDescriptionNameText.text = "";
+        ItemDescriptionText.text = "";
+
+        //update what is being held
+        this.itemSO = null;
+
+        holdItem.StowItem();
+    }
+
     public void OnLeftClick()
     {
         inventoryManager.DeselectAllSlots();
-        selectedShader.SetActive(true);
-        thisItemSelected = true;
 
-        ItemDescriptionNameText.text = itemName;
-        ItemDescriptionText.text = itemDescription;
-        holdItem.HoldItem(itemSO);
+        try
+        {
+            selectedShader.SetActive(true);
+            thisItemSelected = true;
+
+            ItemDescriptionNameText.text = itemSO.itemName;
+            ItemDescriptionText.text = itemSO.itemDescription;
+            holdItem.HoldItem(itemSO);
+        }
+        catch
+        {
+            inventoryManager.DeselectAllSlots();
+        }
+        
     }
 
     public void OnRightClick()
     {
+        holdItem.StowItem();
         return;
     }
 }

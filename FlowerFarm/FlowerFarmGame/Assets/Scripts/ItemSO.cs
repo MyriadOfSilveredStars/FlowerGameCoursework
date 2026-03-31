@@ -11,7 +11,7 @@ public class ItemSO : ScriptableObject
     [TextArea]
     public string itemDescription;
     public Sprite inventoryIcon;
-    public string prefabName;
+    public GameObject prefab;
 
     [Header("Item Stats")]
     public int growTime;

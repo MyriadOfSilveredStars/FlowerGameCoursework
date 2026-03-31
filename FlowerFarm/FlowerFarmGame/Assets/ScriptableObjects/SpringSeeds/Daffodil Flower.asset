@@ -16,7 +16,7 @@ MonoBehaviour:
   itemDescription: "\"Respect\"\n...\nCommon flower grown from a bulb. Lies dormant
     until Spring arrives, when the bulb will bloom. \nSell Price: \xA35"
   inventoryIcon: {fileID: 21300000, guid: 25f1cc8275875ddc499ff3ac6b8c67f9, type: 3}
-  prefabName: Daffodils
+  prefab: {fileID: 2217589285184384749, guid: 3846c9fd3e4aebd82aac4efe16a43a24, type: 3}
   growTime: 0
   buyPrice: 0
   sellPrice: 5

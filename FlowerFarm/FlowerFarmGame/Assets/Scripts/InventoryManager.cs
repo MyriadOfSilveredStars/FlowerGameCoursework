@@ -83,23 +83,48 @@ public class InventoryManager : MonoBehaviour
         moneyText.text = "£" + money.ToString(); //update the money to reflect its current value
     }
 
-    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription, ItemSO itemSO)
+    public int AddItem(int quantity, ItemSO itemSO)
     {
-        Debug.Log("itemName = " + itemName + " | quantity = " + quantity + " | description: " + itemDescription);
+        Debug.Log("itemName = " + itemSO.itemName + " | quantity = " + quantity + " | description: " + itemSO.itemDescription);
 
         for (int i = 0; i < itemSlot.Length; i++)
         {
-            if(itemSlot[i].isFull == false && itemSlot[i].itemName == itemName || itemSlot[i].quantity == 0)
+            if(itemSlot[i].isFull == false && itemSlot[i].itemName == itemSO.itemName || itemSlot[i].quantity == 0)
             {
-                int leftOverItems = itemSlot[i].AddItem(itemName, quantity, itemSprite, itemDescription, itemSO);
+                int leftOverItems = itemSlot[i].AddItem(quantity, itemSO);
                 if (leftOverItems > 0)
                 {
-                    leftOverItems = AddItem(itemName, leftOverItems, itemSprite, itemDescription, itemSO);
+                    leftOverItems = itemSlot[i].AddItem(quantity, itemSO);
                 }
                 return leftOverItems;
             }
         }
         return quantity;
+    }
+
+    public void RemoveItem(int quantity, ItemSO itemSO)
+    {
+        Debug.Log("Removing " + quantity + " of item " + itemSO.itemName);
+
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            if(itemSlot[i].itemName == itemSO.itemName && itemSlot[i].quantity > 0)
+            {
+                itemSlot[i].quantity -= 1;
+                if (itemSlot[i].quantity == 0)
+                {
+                    itemSlot[i].RemoveItem(itemSO, 0);
+                    itemSlot[i].selectedShader.SetActive(false);
+                    itemSlot[i].thisItemSelected = false;
+                }
+                else
+                {
+                    int leftover = itemSlot[i].quantity;
+                    Debug.Log("There are " + leftover + " left");
+                    itemSlot[i].RemoveItem(itemSO, leftover);
+                }
+            }
+        }
     }
 
     public void DeselectAllSlots()

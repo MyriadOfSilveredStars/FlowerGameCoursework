@@ -12,6 +12,7 @@ public class ItemHolding : MonoBehaviour
     public Image itemSprite;
 
     public ItemSO heldItem;
+      public Sprite emptySprite;
     
     public void HoldItem(ItemSO itemSO)
     {
@@ -27,10 +28,12 @@ public class ItemHolding : MonoBehaviour
             heldItem.itemDescription = itemSO.itemDescription;
             heldItem.inventoryIcon = itemSO.inventoryIcon;
         }
-        
+    }
 
-        
-
+    public void StowItem()
+    {
+        this.heldItem = null;
+        itemSprite.sprite = emptySprite;
     }
 
 

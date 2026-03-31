@@ -16,7 +16,7 @@ MonoBehaviour:
   itemDescription: "\"Loyalty\"\n...\nCommon spring flowers found in woodlands. Often
     a sign of winter receding.\nSell Price: \xA33"
   inventoryIcon: {fileID: 21300000, guid: 2e2f8e5ffdc1248558e905cdab9b87db, type: 3}
-  prefabName: Bluebells
+  prefab: {fileID: 1503085971478793436, guid: 3de209540a16ec4c79834a9b63416071, type: 3}
   growTime: 0
   buyPrice: 0
   sellPrice: 4

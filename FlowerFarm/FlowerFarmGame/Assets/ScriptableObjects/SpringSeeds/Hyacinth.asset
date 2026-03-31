@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Purple Hyacinth Seeds
   itemDescription: Seeds to grow a patch of hyacinths
   inventoryIcon: {fileID: 21300000, guid: 45d8921699e6b874e9bf18a24d839187, type: 3}
-  prefabName: 
+  prefab: {fileID: 2217589285184384749, guid: 3846c9fd3e4aebd82aac4efe16a43a24, type: 3}
   growTime: 6
   buyPrice: 3
   sellPrice: 0

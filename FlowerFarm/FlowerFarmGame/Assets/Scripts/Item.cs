@@ -41,7 +41,7 @@ public class Item : MonoBehaviour, IInteractable
     {
         Debug.Log("A hit, a fine hit!");
 
-        int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDescription, itemSO);
+        int leftOverItems = inventoryManager.AddItem(quantity, itemSO);
 
         if (leftOverItems <= 0)
         {

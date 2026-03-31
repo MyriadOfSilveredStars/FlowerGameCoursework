@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5319109469794781205
+--- !u!1 &9099082237117664484
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8964041800296081942}
-  - component: {fileID: 6474798535753710008}
-  - component: {fileID: 5916099164919501463}
-  - component: {fileID: 8975317179566440763}
-  - component: {fileID: 1299294802102009176}
+  - component: {fileID: 4217537488151278547}
+  - component: {fileID: 5572511868424077159}
+  - component: {fileID: 2247348789503033103}
+  - component: {fileID: 5575418127705548916}
+  - component: {fileID: 7281662425939622623}
   m_Layer: 0
-  m_Name: PlantSpot
+  m_Name: Primrose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8964041800296081942
+--- !u!4 &4217537488151278547
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319109469794781205}
+  m_GameObject: {fileID: 9099082237117664484}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1932983, y: -0.049, z: 0.9852905}
-  m_LocalScale: {x: 0.8, y: 0.1, z: 0.8}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 621.305, y: 0.00046190905, z: 704.5556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6474798535753710008
+--- !u!33 &5572511868424077159
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319109469794781205}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5916099164919501463
+  m_GameObject: {fileID: 9099082237117664484}
+  m_Mesh: {fileID: 4108682904043408557, guid: c191d239bab3ca340a8fe00555d861f2, type: 3}
+--- !u!23 &2247348789503033103
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319109469794781205}
+  m_GameObject: {fileID: 9099082237117664484}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: af66091e0eca0c04a9c3584ae867418a, type: 3}
+  - {fileID: 2100000, guid: 772d9d9117eab56479d2738f542c054c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,13 +92,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8975317179566440763
-BoxCollider:
+--- !u!64 &5575418127705548916
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319109469794781205}
+  m_GameObject: {fileID: 9099082237117664484}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -110,18 +110,24 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1299294802102009176
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4108682904043408557, guid: c191d239bab3ca340a8fe00555d861f2, type: 3}
+--- !u!114 &7281662425939622623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319109469794781205}
+  m_GameObject: {fileID: 9099082237117664484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ba382aee36abaa3798440bde79365d2, type: 3}
+  m_Script: {fileID: 11500000, guid: be23765bc038de5f481c3e35cd3c37c8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlantingSpot
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  itemName: Primrose
+  quantity: 1
+  sprite: {fileID: 21300000, guid: ca82ef8fee3b74c9395f33d929dac1f5, type: 3}
+  itemSO: {fileID: 0}
+  itemDescription: 

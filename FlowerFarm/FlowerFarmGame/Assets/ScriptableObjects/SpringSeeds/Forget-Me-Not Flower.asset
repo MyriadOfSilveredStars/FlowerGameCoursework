@@ -16,7 +16,7 @@ MonoBehaviour:
   itemDescription: "\"Don't Forget Me\"\n...\nSmall blue flowers. The yellow center
     turns white when pollinated.\nSell Price: \xA31"
   inventoryIcon: {fileID: 21300000, guid: 588fe91a465418404bc6d4dc08b2df97, type: 3}
-  prefabName: ForgetMeNot
+  prefab: {fileID: 4877953237953224584, guid: bea486d5d39463efc8bc2f5ade53c188, type: 3}
   growTime: 0
   buyPrice: 0
   sellPrice: 1
