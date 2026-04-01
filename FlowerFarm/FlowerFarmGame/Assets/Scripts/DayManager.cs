@@ -11,9 +11,7 @@ public class DayManager : MonoBehaviour, IInteractable
     public string Season;
 
     public GameObject[] plantSpots;
-    public static DayManager current;
-
-    public event Action onDayPassed;
+    public static event Action<int> OnDayPassed;
 
     private void Start()
     {
@@ -21,18 +19,10 @@ public class DayManager : MonoBehaviour, IInteractable
         Season = "Spring";
     }
 
-    public void DayPasses()
-    {
-        if (onDayPassed != null)
-        {
-            onDayPassed();
-        }
-    }
-
     public void nextDay()
     {
         daysGone += 1;
-
+        OnDayPassed?.Invoke(1);
     }
 
     public void changeSeason()

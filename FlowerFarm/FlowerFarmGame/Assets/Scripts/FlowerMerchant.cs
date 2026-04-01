@@ -12,7 +12,6 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
     public GameObject ShopMenu;
     public GameObject PlayerHUD;
     public GameObject Crosshair;
-    public GameObject InteractCrosshair;
     
     private bool menuOpen;
 
@@ -56,7 +55,6 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
         ShopMenu.SetActive(true);
         PlayerHUD.SetActive(false);
         Crosshair.SetActive(false);
-        InteractCrosshair.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

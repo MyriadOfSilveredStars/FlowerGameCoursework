@@ -16,8 +16,7 @@ public class Item : MonoBehaviour, IInteractable
     [SerializeField]
     private Sprite sprite; //the image used in the inventory
 
-    [SerializeField]
-    private ItemSO itemSO; //the item SO used to make the flower
+    public ItemSO itemSO; //the item SO used to make the flower
 
     [TextArea]
     [SerializeField]

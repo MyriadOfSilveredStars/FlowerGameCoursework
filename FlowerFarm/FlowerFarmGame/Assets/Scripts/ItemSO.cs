@@ -13,6 +13,8 @@ public class ItemSO : ScriptableObject
     public Sprite inventoryIcon;
     public GameObject prefab;
 
+    public ItemSO flowerSO;
+
     [Header("Item Stats")]
     public int growTime;
     public int buyPrice;

@@ -14,6 +14,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject bouquetMenu;
     public GameObject bouquetOptions;
 
+    public GameObject shopMenu;
+
     private bool menuActivated;
 
     public ItemSlot[] itemSlot;
@@ -47,6 +49,7 @@ public class InventoryManager : MonoBehaviour
             InventoryBanner.SetActive(false);
             bouquetMenu.SetActive(false);
             bouquetOptions.SetActive(false);
+            shopMenu.SetActive(false);
 
 
             PlayerHUD.SetActive(true);
@@ -70,6 +73,7 @@ public class InventoryManager : MonoBehaviour
             Crosshair.SetActive(false);
             bouquetMenu.SetActive(false);
             bouquetOptions.SetActive(false);
+            shopMenu.SetActive(false);
 
             menuActivated = true;
 

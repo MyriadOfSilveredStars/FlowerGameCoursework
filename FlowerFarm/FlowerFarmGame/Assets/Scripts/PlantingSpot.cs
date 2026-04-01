@@ -13,13 +13,13 @@ public class PlantingSpot : MonoBehaviour, IInteractable
     public int daysPlanted;
     private bool canBeGathered;
     private Vector3 spotCoords;
-    public GameObject sprout;
-
-    private DayManager dayManager;
-
+    public GameObject sproutPrefab;
     private ItemHolding heldItem;
+    private ItemSO itemPlanted;
 
     private InventoryManager inventoryManager;
+
+    public static event Action<int, int> KYS;
 
 
     private void Start(){ //when the game starts, all spots are empty
@@ -32,7 +32,6 @@ public class PlantingSpot : MonoBehaviour, IInteractable
         spotCoords = this.transform.position;
 
         inventoryManager = GameObject.Find("Canvas - Inventory").GetComponent<InventoryManager>();
-        dayManager = GameObject.Find("DaySkipper").GetComponent<DayManager>();
 
     }
 
@@ -42,10 +41,23 @@ public class PlantingSpot : MonoBehaviour, IInteractable
 
     }
 
-    private void OnDayPassing()
+    private void OnEnable()
     {
-        Debug.Log("Adding a day to this plant spot");
-        this.daysPlanted += 1;
+        DayManager.OnDayPassed += IncreaseDays;
+    }
+
+    private void Disable()
+    {
+        DayManager.OnDayPassed -= IncreaseDays;
+    }
+
+    private void IncreaseDays(int numDays)
+    {
+        if (hasPlant)
+        {
+            this.daysPlanted += numDays;    
+            maturePlant();
+        }
     }
 
     public void plantSeed()
@@ -58,11 +70,17 @@ public class PlantingSpot : MonoBehaviour, IInteractable
                 {
                     hasPlant = true;
                     Debug.Log("You've planted " + heldItem.heldItem.itemName + "!");
-                    
-                    this.sprout = Instantiate(heldItem.heldItem.prefab, this.spotCoords + new Vector3(0, 0.1f, 0), Quaternion.identity);
+                    itemPlanted = heldItem.heldItem;
+
+                    GameObject spotSprout = Instantiate(sproutPrefab, this.spotCoords + new Vector3(0, 0.01f, 0), Quaternion.identity);
+                    spotSprout.GetComponent<KillSelf>().timeNeeded = itemPlanted.growTime;
 
                     daysPlanted = 0;
                     inventoryManager.RemoveItem(1, heldItem.heldItem);
+
+                    //make the white spot go away while the plant grows
+                    this.transform.position += new Vector3(0, -1f, 0);
+
                 }
                 else if (!heldItem.heldItem.isSeed)
                 {
@@ -78,25 +96,29 @@ public class PlantingSpot : MonoBehaviour, IInteractable
         
     }
 
-    public void spawnFlowerSprout()
+    public void maturePlant()
     {
-        //this will spawn a little sprout prefab on the plant spot
-    }
-
-    public void harvestFlower()
-    {
-        if (canBeGathered)
+        if (hasPlant)
         {
-            canBeGathered = false;
-            hasPlant = false;
-            daysPlanted = 0;
+            if (daysPlanted == itemPlanted.growTime)
+            {
+                KYS?.Invoke(itemPlanted.growTime, daysPlanted); //destroy the sprout
+                GameObject flower = Instantiate(itemPlanted.prefab, this.spotCoords + new Vector3(0, 0.01f, 0), Quaternion.identity);
+                flower.GetComponent<Item>().itemSO = itemPlanted.flowerSO;
+
+                //make the white spot come back when the flower is ready to be gathered
+                this.transform.position += new Vector3(0, 1, 0);
+                //reset the spot's data
+                hasPlant = false;
+                daysPlanted = 0;
+                canBeGathered = false;
+                heldItem = null;
+            }
         }
     }
 
     public void Interact()
     {
-        Debug.Log("Planting!");
-        plantSeed();
-        
+        plantSeed();   
     }
 }

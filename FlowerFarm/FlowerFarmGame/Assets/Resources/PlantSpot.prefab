@@ -125,4 +125,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba382aee36abaa3798440bde79365d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantingSpot
-  sprout: {fileID: 2217589285184384749, guid: 3846c9fd3e4aebd82aac4efe16a43a24, type: 3}
+  daysPlanted: 0
+  sproutPrefab: {fileID: 2217589285184384749, guid: 3846c9fd3e4aebd82aac4efe16a43a24, type: 3}

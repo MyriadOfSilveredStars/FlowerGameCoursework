@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using TMPro;
 
 interface IInteractable
 {
@@ -11,14 +12,14 @@ interface IInteractable
 public class Interactor : MonoBehaviour
 {
     public GameObject Crosshair;
-    public GameObject InteractPromptCrosshair;
+    public TMP_Text CrosshairText;
 
     public Transform InteractorSource;
     public float InteractRange;
 
     void Start()
     {
-        
+        CrosshairText.text = "";
     }
 
     void Update()
@@ -28,8 +29,7 @@ public class Interactor : MonoBehaviour
             {
             if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObject))
             {
-                Crosshair.SetActive(false);
-                InteractPromptCrosshair.SetActive(true);
+                CrosshairText.text = "Interact [E]";
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     interactObject.Interact();
@@ -38,8 +38,7 @@ public class Interactor : MonoBehaviour
             }
             else
             {
-                Crosshair.SetActive(true);
-                InteractPromptCrosshair.SetActive(false);
+                CrosshairText.text = "";
             }
             }
     }
