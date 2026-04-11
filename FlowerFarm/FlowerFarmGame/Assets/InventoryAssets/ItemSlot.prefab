@@ -312,11 +312,9 @@ MonoBehaviour:
   quantityText: {fileID: 549971983515767798}
   itemImage: {fileID: 7107439577363676325}
   emptySprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  ItemDescriptionNameText: {fileID: 0}
-  ItemDescriptionText: {fileID: 0}
   selectedShader: {fileID: 1376656332555614337}
   thisItemSelected: 0
-  maxNumberOfItems: 0
+  maxNumberOfItems: 64
 --- !u!1 &4679144847723032253
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +350,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.5617, y: 0.5625}
-  m_SizeDelta: {x: 85.3957, y: 87.6341}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &532119111205434708
 CanvasRenderer:

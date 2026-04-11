@@ -25,6 +25,12 @@ public class BouquetMenuManager : MonoBehaviour
     public FlowerOption[] flowerOption;
     public GameObject[] optionPanels;
 
+    public TMP_Text bouquetPriceText;
+
+    //Bouquet Data
+    private List<ItemSO> BouquetSelection;
+    private double bouquetPrice;
+
     void Start()
     {
         BouquetMenu.SetActive(false);
@@ -37,17 +43,25 @@ public class BouquetMenuManager : MonoBehaviour
         {
             optionPanels[i].SetActive(false);
         }
-
+        BouquetSelection = new List<ItemSO>();
+        bouquetPrice = 0;
     }
 
+    // EVENT LISTENERS - Listening for various events here
     private void OnEnable()
     {
         InventoryManager.FlowerAvailable += RecieveFlowers;
+        AddSubtractButton.AddFlowerToBouquet += AddToBouquet;
+        AddSubtractButton.TakeFlowerFromBouquet += TakeFromBouquet;
+        ConfirmBouquetButton.ConfirmBouquetSelection += CreateBouquet;
     }
 
     private void Disable()
     {
         InventoryManager.FlowerAvailable -= RecieveFlowers;
+        AddSubtractButton.AddFlowerToBouquet -= AddToBouquet;
+        AddSubtractButton.TakeFlowerFromBouquet -= TakeFromBouquet;
+        ConfirmBouquetButton.ConfirmBouquetSelection -= CreateBouquet;
     }
 
     void Update()
@@ -118,8 +132,34 @@ public class BouquetMenuManager : MonoBehaviour
 
     }
 
-    public void UseFlowers()
+    public void CalculatePrice()
+    {    
+        bouquetPrice = 0;
+        for (int i = 0; i < BouquetSelection.Count; i++)
+        {
+            bouquetPrice += BouquetSelection[i].sellPrice * 1.1;
+        }
+        bouquetPriceText.text = "Bouquet Worth : £ " + bouquetPrice.ToString();
+    }
+
+    public void AddToBouquet(ItemSO flowerToAdd, int choiceNumber)
     {
-        
+        Debug.Log("Adding " + flowerToAdd.itemName + " to this bouquet!");
+        flowerOption[choiceNumber].AddFlowersToBouquet(); //update this visually
+        BouquetSelection.Add(flowerToAdd);
+        CalculatePrice();
+    }
+
+    public void TakeFromBouquet(ItemSO flowerToRemove, int choiceNumber)
+    {
+        Debug.Log("Removing " + flowerToRemove.itemName + " from this bouquet!");
+        flowerOption[choiceNumber].TakeFlowersFromBouquet();
+        BouquetSelection.Remove(flowerToRemove);
+        CalculatePrice();
+    }
+
+    public void CreateBouquet()
+    {
+        Debug.Log("Making dis bouquet");
     }
 }

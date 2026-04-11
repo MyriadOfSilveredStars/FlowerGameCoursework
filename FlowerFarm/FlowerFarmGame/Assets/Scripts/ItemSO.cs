@@ -23,6 +23,9 @@ public class ItemSO : ScriptableObject
     public bool isBouquet;
     public bool isSeed;
 
+    //if bouquet, needs this:
+    public ItemSO[] bouquetContents;
+
     
 
 }

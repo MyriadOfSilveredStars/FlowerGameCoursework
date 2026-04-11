@@ -13,11 +13,12 @@ public class FlowerOption : MonoBehaviour
 
     [Header("Item SO")]
     public ItemSO flowerSO;
-    private ItemSO bouquetSO;
 
     [Header("Data")]
     private int flowerPrice;
     private int numFlowers;
+    private int numFlowersInBouquet;
+    private string flowerNameText;
 
 
 
@@ -25,27 +26,54 @@ public class FlowerOption : MonoBehaviour
     void Start()
     {
         flowerName.text = "TestFlower";
-        flowerQuantity.text = "0";
+        numFlowersInBouquet = 0;
+        flowerQuantity.text = numFlowersInBouquet.ToString();
 
     }
 
     public void PopulateChoices(ItemSO flower, int quantity)
     { //fill the choice with the available flowers
         flowerSO = flower;
-        flowerName.text = flower.itemName;
         numFlowers = quantity;
-        flowerQuantity.text = numFlowers.ToString();
+        flowerNameText = flower.itemName;
+        flowerName.text = flowerNameText + " (x" + numFlowers.ToString() + ")";
+
+        //give the add and subtract buttons the flowers required
+        subtractButton.GetComponent<AddSubtractButton>().flowerToChange = flower;
+        plusButton.GetComponent<AddSubtractButton>().flowerToChange = flower;
+
     }
 
+    //This increase and decreases the quantity of flowers still available
     public void IncreaseQuantity(int increase)
     {
         numFlowers += increase;
-        flowerQuantity.text = numFlowers.ToString();
+        flowerName.text = flowerNameText + " (x" + numFlowers.ToString() + ")";
     }
-
     public void DecreaseQuantity(int decrease)
     {
         numFlowers -= decrease;
-        flowerQuantity.text = numFlowers.ToString();
+        flowerName.text = flowerNameText + " (x" + numFlowers.ToString() + ")";
+    }
+
+    //This will increase and decrease the number of flowers already in the bouquet
+    public void AddFlowersToBouquet()
+    {
+        if(numFlowers > 0)
+        {
+            DecreaseQuantity(1);
+            numFlowersInBouquet += 1;
+            flowerQuantity.text = numFlowersInBouquet.ToString();
+        }
+    }
+
+    public void TakeFlowersFromBouquet()
+    {
+        if (numFlowersInBouquet > 0)
+        {
+            IncreaseQuantity(1);
+            numFlowersInBouquet -= 1;
+            flowerQuantity.text = numFlowersInBouquet.ToString();
+        }
     }
 }
