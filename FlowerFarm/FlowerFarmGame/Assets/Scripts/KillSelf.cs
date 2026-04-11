@@ -11,7 +11,7 @@ public class KillSelf : MonoBehaviour
 {
     public int timeNeeded;
 
-        private void OnEnable()
+    private void OnEnable()
     {
         PlantingSpot.KYS += KillMyself;
     }

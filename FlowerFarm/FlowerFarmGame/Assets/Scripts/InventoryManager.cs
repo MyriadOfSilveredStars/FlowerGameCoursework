@@ -1,41 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using TMPro;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using Unity.VisualScripting;
+
 
 public class InventoryManager : MonoBehaviour
 {
+    [Header("Menu Objects")]
     public GameObject InventoryMenu;
     public GameObject PlayerHUD;
-    public GameObject InventoryBanner;
     public GameObject Crosshair;
-
     public GameObject bouquetMenu;
-    public GameObject bouquetOptions;
-
     public GameObject shopMenu;
-
     private bool menuActivated;
 
+    [Header("Inventory Data")]
     public ItemSlot[] itemSlot;
-
     public ItemSO[] itemSOs;
-
     public int money;
     public TMP_Text moneyText;
+    public TMP_Text itemDescriptionText;
+    public TMP_Text itemNameText;
 
+    public static event Action<ItemSO> FlowerAvailable;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         InventoryMenu.SetActive(false);
-        InventoryBanner.SetActive(false);
         PlayerHUD.SetActive(true);
         Crosshair.SetActive(true);
 
         money = 100;
         moneyText.text = "£" + money.ToString();
+
+        DeselectAllSlots();
     }
 
     // Update is called once per frame
@@ -46,9 +49,7 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("Tab pressed");
             //when inventory closed, deactivate menu and reactivate HUD
             InventoryMenu.SetActive(false);
-            InventoryBanner.SetActive(false);
             bouquetMenu.SetActive(false);
-            bouquetOptions.SetActive(false);
             shopMenu.SetActive(false);
 
 
@@ -68,11 +69,9 @@ public class InventoryManager : MonoBehaviour
         {   
             //show inventory and hide the HUD
             InventoryMenu.SetActive(true);
-            InventoryBanner.SetActive(true);
             PlayerHUD.SetActive(false);
             Crosshair.SetActive(false);
             bouquetMenu.SetActive(false);
-            bouquetOptions.SetActive(false);
             shopMenu.SetActive(false);
 
             menuActivated = true;
@@ -99,8 +98,15 @@ public class InventoryManager : MonoBehaviour
                 if (leftOverItems > 0)
                 {
                     leftOverItems = itemSlot[i].AddItem(quantity, itemSO);
+                    
+                }
+                if (itemSO.isFlower)
+                {
+                    Debug.Log("Hazel, we have flowers");
+                    FlowerAvailable?.Invoke(itemSO);
                 }
                 return leftOverItems;
+                
             }
         }
         return quantity;
@@ -138,5 +144,11 @@ public class InventoryManager : MonoBehaviour
             itemSlot[i].selectedShader.SetActive(false);
             itemSlot[i].thisItemSelected = false;
         }
+    }
+
+    public void updateDescription(string newName, string newDesc)
+    {
+        itemDescriptionText.text = newDesc;
+        itemNameText.text = newName;
     }
 }

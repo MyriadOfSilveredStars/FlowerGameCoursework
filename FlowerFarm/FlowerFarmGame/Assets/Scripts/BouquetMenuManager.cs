@@ -1,33 +1,63 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using Unity.VisualScripting;
+
 
 public class BouquetMenuManager : MonoBehaviour
 {
+    [Header("Menu Objects")]
     public GameObject BouquetMenu;
-    public GameObject MenuBanner;
-
     public GameObject InventoryMenu;
     public GameObject PlayerHUD;
-    public GameObject InventoryBanner;
     public GameObject Crosshair;
-
     private bool menuActivated;
+
+    [Header("Menu Data")]
+    private ItemSO[] FlowerChoices;
+    private int[] quantities;
+    public GameObject NoFlowerMessage;
+
+    public FlowerOption[] flowerOption;
+    public GameObject[] optionPanels;
 
     void Start()
     {
         BouquetMenu.SetActive(false);
-        MenuBanner.SetActive(false);
+        NoFlowerMessage.SetActive(true);
+
+        FlowerChoices = new ItemSO[4];
+        quantities = new int[4] {0, 0, 0, 0};
+
+        for (int i = 0; i < optionPanels.Length; i++)
+        {
+            optionPanels[i].SetActive(false);
+        }
+
+    }
+
+    private void OnEnable()
+    {
+        InventoryManager.FlowerAvailable += RecieveFlowers;
+    }
+
+    private void Disable()
+    {
+        InventoryManager.FlowerAvailable -= RecieveFlowers;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.B) && menuActivated)
         {   
-            Debug.Log("Tab pressed");
+            Debug.Log("B Pressed");
             //when inventory closed, deactivate menu and reactivate HUD
             InventoryMenu.SetActive(false);
-            InventoryBanner.SetActive(false);
             BouquetMenu.SetActive(false);
-            MenuBanner.SetActive(false);
 
 
             PlayerHUD.SetActive(true);
@@ -46,10 +76,8 @@ public class BouquetMenuManager : MonoBehaviour
         {   
             //show inventory and hide the HUD
             InventoryMenu.SetActive(false);
-            InventoryBanner.SetActive(false);
 
             BouquetMenu.SetActive(true);
-            MenuBanner.SetActive(true);
 
             PlayerHUD.SetActive(false);
             Crosshair.SetActive(false);
@@ -63,5 +91,35 @@ public class BouquetMenuManager : MonoBehaviour
             //pause the game
             Time.timeScale = 0;
         }
+    }
+
+    public void RecieveFlowers(ItemSO flower)
+    {
+        NoFlowerMessage.SetActive(false);
+        Debug.Log("Copy Housten, we have flowers. Some " + flower.itemName + " to be exact");
+
+        for (int i = 0; i < FlowerChoices.Length; i++)
+        {
+            if (FlowerChoices[i] != null && FlowerChoices[i].itemName == flower.itemName)
+            {
+                quantities[i] += 1;
+                flowerOption[i].IncreaseQuantity(1);
+                return;
+            }
+            else if(FlowerChoices[i] == null)
+            {
+                FlowerChoices[i] = flower; //keeps track of the flower SOs
+                flowerOption[i].PopulateChoices(flower, 1); //updates the item slot code
+                quantities[i] += 1; //keeps track of the internal quantity
+                optionPanels[i].SetActive(true); //the visible item slot
+                return;
+            }
+        }
+
+    }
+
+    public void UseFlowers()
+    {
+        
     }
 }

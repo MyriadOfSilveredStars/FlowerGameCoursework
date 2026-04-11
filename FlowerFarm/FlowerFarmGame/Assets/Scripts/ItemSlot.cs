@@ -18,6 +18,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public ItemSO itemSO;
 
     //ITEM SLOT
+    [Header("ITEM SLOT")]
     [SerializeField]
     private TMP_Text quantityText;
 
@@ -26,9 +27,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public Sprite emptySprite;
 
+    [Header("ITEM DESCRIPTION")]
     //ITEM DESCRIPTION SLOT
-    public TMP_Text ItemDescriptionNameText;
-    public TMP_Text ItemDescriptionText;
 
     public GameObject selectedShader;
     public bool thisItemSelected;
@@ -123,9 +123,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         quantityText.enabled = false;
         itemImage.sprite = emptySprite;
 
-        ItemDescriptionNameText.text = "";
-        ItemDescriptionText.text = "";
-
         //update what is being held
         this.itemSO = null;
 
@@ -134,21 +131,24 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnLeftClick()
     {
+        Debug.Log("Clicked on slot!");
         inventoryManager.DeselectAllSlots();
+
+        
+        selectedShader.SetActive(true);
+        thisItemSelected = true;
 
         try
         {
-            selectedShader.SetActive(true);
-            thisItemSelected = true;
-
-            ItemDescriptionNameText.text = itemSO.itemName;
-            ItemDescriptionText.text = itemSO.itemDescription;
+            inventoryManager.updateDescription(itemSO.itemName, itemSO.itemDescription);
             holdItem.HoldItem(itemSO);
         }
         catch
         {
             inventoryManager.DeselectAllSlots();
         }
+        
+        
         
     }
 
