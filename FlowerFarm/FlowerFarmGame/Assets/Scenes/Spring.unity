@@ -21051,6 +21051,7 @@ MonoBehaviour:
   - {fileID: 316645320}
   - {fileID: 327035362}
   bouquetPriceText: {fileID: 710565697}
+  bouquetIcon: {fileID: 21300000, guid: 68f70da26186c8f0388d17ed1efc6259, type: 3}
 --- !u!114 &944239357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30528,6 +30529,7 @@ GameObject:
   - component: {fileID: 1440019991}
   - component: {fileID: 1440019993}
   - component: {fileID: 1440019992}
+  - component: {fileID: 1440019994}
   m_Layer: 5
   m_Name: ConfirmButton
   m_TagString: Untagged
@@ -30593,6 +30595,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1440019990}
   m_CullTransparentMesh: 1
+--- !u!114 &1440019994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440019990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fa4b76632fa2247d996f2d502568723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConfirmBouquetButton
 --- !u!1001 &1440512423
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -125,8 +125,15 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
         //update what is being held
         this.itemSO = null;
-
-        holdItem.StowItem();
+        try
+        {
+            holdItem.StowItem();
+        }
+        catch
+        {
+            Debug.Log("Not holding anything, cannot stow the item");
+        }
+        
     }
 
     public void OnLeftClick()

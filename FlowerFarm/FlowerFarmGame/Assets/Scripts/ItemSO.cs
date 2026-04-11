@@ -1,7 +1,12 @@
 using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using Unity.VisualScripting;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 [CreateAssetMenu(fileName = "New Item")]
 public class ItemSO : ScriptableObject
@@ -18,13 +23,13 @@ public class ItemSO : ScriptableObject
     [Header("Item Stats")]
     public int growTime;
     public int buyPrice;
-    public int sellPrice;
+    public double sellPrice;
     public bool isFlower;
     public bool isBouquet;
     public bool isSeed;
 
     //if bouquet, needs this:
-    public ItemSO[] bouquetContents;
+    public List<ItemSO> bouquetContents;
 
     
 

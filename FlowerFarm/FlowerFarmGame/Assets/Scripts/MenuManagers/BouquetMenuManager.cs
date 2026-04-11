@@ -30,9 +30,14 @@ public class BouquetMenuManager : MonoBehaviour
     //Bouquet Data
     private List<ItemSO> BouquetSelection;
     private double bouquetPrice;
+    [SerializeField]
+    private Sprite bouquetIcon;
+    private InventoryManager inventoryManager;
 
     void Start()
     {
+        inventoryManager = GameObject.Find("Canvas - Inventory").GetComponent<InventoryManager>();
+
         BouquetMenu.SetActive(false);
         NoFlowerMessage.SetActive(true);
 
@@ -147,19 +152,46 @@ public class BouquetMenuManager : MonoBehaviour
         Debug.Log("Adding " + flowerToAdd.itemName + " to this bouquet!");
         flowerOption[choiceNumber].AddFlowersToBouquet(); //update this visually
         BouquetSelection.Add(flowerToAdd);
+        quantities[choiceNumber] -= 1;
+
         CalculatePrice();
+        inventoryManager.RemoveItem(1, flowerToAdd);
     }
 
     public void TakeFromBouquet(ItemSO flowerToRemove, int choiceNumber)
     {
         Debug.Log("Removing " + flowerToRemove.itemName + " from this bouquet!");
         flowerOption[choiceNumber].TakeFlowersFromBouquet();
-        BouquetSelection.Remove(flowerToRemove);
+        BouquetSelection.Remove(flowerToRemove); //update this visually
+        quantities[choiceNumber] += 1;
+
         CalculatePrice();
+        inventoryManager.AddItem(1, flowerToRemove);
     }
 
     public void CreateBouquet()
     {
         Debug.Log("Making dis bouquet");
+        ItemSO finishedBouquet = ScriptableObject.CreateInstance<ItemSO>();
+
+        finishedBouquet.itemName = "Finished Bouquet";
+        finishedBouquet.itemDescription = "A gorgeous bouquet, full of flowers";
+        finishedBouquet.sellPrice = bouquetPrice;
+        finishedBouquet.isBouquet = true;
+        finishedBouquet.inventoryIcon = bouquetIcon;
+
+        finishedBouquet.bouquetContents = BouquetSelection;
+        inventoryManager.AddItem(1, finishedBouquet);
+
+    }
+
+    public string CalculateName()
+    {
+        return "hi";
+    }
+
+    public void ResetMenu()
+    {
+        
     }
 }
