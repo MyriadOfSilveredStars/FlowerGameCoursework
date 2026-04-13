@@ -42,6 +42,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     {
         inventoryManager = GameObject.Find("Canvas - Inventory").GetComponent<InventoryManager>();
         holdItem = GameObject.Find("Canvas - HUD").GetComponent<ItemHolding>();
+        itemImage.sprite = emptySprite;
     }
 
     public int AddItem(int quantity, ItemSO itemSO)

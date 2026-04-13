@@ -16,8 +16,8 @@ public class FlowerOption : MonoBehaviour
 
     [Header("Data")]
     private int flowerPrice;
-    private int numFlowers;
-    private int numFlowersInBouquet;
+    private int numFlowers; //number of available flowers of this type
+    private int numFlowersInBouquet; //number of this type in the bouquet
     private string flowerNameText;
 
 
@@ -47,33 +47,49 @@ public class FlowerOption : MonoBehaviour
     //This increase and decreases the quantity of flowers still available
     public void IncreaseQuantity(int increase)
     {
-        numFlowers += increase;
+        this.numFlowers += increase;
         flowerName.text = flowerNameText + " (x" + numFlowers.ToString() + ")";
     }
     public void DecreaseQuantity(int decrease)
     {
-        numFlowers -= decrease;
+        this.numFlowers -= decrease;
         flowerName.text = flowerNameText + " (x" + numFlowers.ToString() + ")";
     }
 
     //This will increase and decrease the number of flowers already in the bouquet
-    public void AddFlowersToBouquet()
+    public bool AddFlowersToBouquet()
     {
         if(numFlowers > 0)
         {
             DecreaseQuantity(1);
             numFlowersInBouquet += 1;
             flowerQuantity.text = numFlowersInBouquet.ToString();
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
-    public void TakeFlowersFromBouquet()
+    public bool TakeFlowersFromBouquet()
     {
         if (numFlowersInBouquet > 0)
         {
-            IncreaseQuantity(1);
+            //IncreaseQuantity(1);
             numFlowersInBouquet -= 1;
             flowerQuantity.text = numFlowersInBouquet.ToString();
+            return true;
         }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void ResetMenu()
+    {
+        numFlowersInBouquet = 0;
+        flowerQuantity.text = numFlowersInBouquet.ToString();
     }
 }

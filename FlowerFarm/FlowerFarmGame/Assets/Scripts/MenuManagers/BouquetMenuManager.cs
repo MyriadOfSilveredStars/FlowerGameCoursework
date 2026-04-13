@@ -149,24 +149,33 @@ public class BouquetMenuManager : MonoBehaviour
 
     public void AddToBouquet(ItemSO flowerToAdd, int choiceNumber)
     {
-        Debug.Log("Adding " + flowerToAdd.itemName + " to this bouquet!");
-        flowerOption[choiceNumber].AddFlowersToBouquet(); //update this visually
-        BouquetSelection.Add(flowerToAdd);
-        quantities[choiceNumber] -= 1;
+        bool canDo = flowerOption[choiceNumber].AddFlowersToBouquet(); //update this visually
 
-        CalculatePrice();
-        inventoryManager.RemoveItem(1, flowerToAdd);
+        if (canDo) //check that flowers can be added to bouquet
+        {
+            Debug.Log("Adding " + flowerToAdd.itemName + " to this bouquet!");
+            BouquetSelection.Add(flowerToAdd);
+            quantities[choiceNumber] -= 1;
+
+            CalculatePrice();
+            inventoryManager.RemoveItem(1, flowerToAdd);
+        }
+        
     }
 
     public void TakeFromBouquet(ItemSO flowerToRemove, int choiceNumber)
     {
-        Debug.Log("Removing " + flowerToRemove.itemName + " from this bouquet!");
-        flowerOption[choiceNumber].TakeFlowersFromBouquet();
-        BouquetSelection.Remove(flowerToRemove); //update this visually
-        quantities[choiceNumber] += 1;
+        bool canDo = flowerOption[choiceNumber].TakeFlowersFromBouquet();
+        if (canDo) //check that flowers can be taken from bouquet
+        {
+            Debug.Log("Removing " + flowerToRemove.itemName + " from this bouquet!");
+            BouquetSelection.Remove(flowerToRemove); //update this visually
+            quantities[choiceNumber] += 1;
 
-        CalculatePrice();
-        inventoryManager.AddItem(1, flowerToRemove);
+            CalculatePrice();
+            inventoryManager.AddItem(1, flowerToRemove);
+        }
+        
     }
 
     public void CreateBouquet()
@@ -183,6 +192,8 @@ public class BouquetMenuManager : MonoBehaviour
         finishedBouquet.bouquetContents = BouquetSelection;
         inventoryManager.AddItem(1, finishedBouquet);
 
+        ResetMenu();
+
     }
 
     public string CalculateName()
@@ -192,6 +203,13 @@ public class BouquetMenuManager : MonoBehaviour
 
     public void ResetMenu()
     {
-        
+        //reset the bouquet menu so we can start again
+        BouquetSelection = new List<ItemSO>();
+        bouquetPrice = 0;
+
+        for (int i = 0; i < 4; i++)
+        {
+            flowerOption[i].ResetMenu();
+        }
     }
 }
