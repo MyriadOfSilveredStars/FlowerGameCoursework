@@ -11,6 +11,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     //ITEM DATA
     public string itemName;
     public int quantity;
+    public double itemPrice;
     public Sprite itemSprite;
     public bool isFull;
     public string itemDescription;
@@ -58,6 +59,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
         //Update NAME
         this.itemName = itemSO.itemName;
+
+        this.itemPrice = itemSO.sellPrice;
 
         //Update image
         this.itemSprite = itemSO.inventoryIcon;
@@ -155,8 +158,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         {
             inventoryManager.DeselectAllSlots();
         }
-        
-        
         
     }
 

@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour
     [Header("Inventory Data")]
     public ItemSlot[] itemSlot;
     public ItemSO[] itemSOs;
-    public int money;
+    public double money;
     public TMP_Text moneyText;
     public TMP_Text itemDescriptionText;
     public TMP_Text itemNameText;
@@ -125,7 +125,7 @@ public class InventoryManager : MonoBehaviour
 
         for (int i = 0; i < itemSlot.Length; i++)
         {
-            if(itemSlot[i].itemName == itemSO.itemName && itemSlot[i].quantity > 0)
+            if(itemSlot[i].itemName == itemSO.itemName && itemSlot[i].itemPrice == itemSO.sellPrice && itemSlot[i].quantity > 0)
             {
                 itemSlot[i].quantity -= 1;
                 if (itemSlot[i].quantity == 0)

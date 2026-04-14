@@ -183,8 +183,8 @@ public class BouquetMenuManager : MonoBehaviour
         Debug.Log("Making dis bouquet");
         ItemSO finishedBouquet = ScriptableObject.CreateInstance<ItemSO>();
 
-        finishedBouquet.itemName = "Finished Bouquet";
-        finishedBouquet.itemDescription = "A gorgeous bouquet, full of flowers";
+        finishedBouquet.itemName = CalculateName(BouquetSelection);
+        finishedBouquet.itemDescription = CalculateDescription(BouquetSelection);
         finishedBouquet.sellPrice = bouquetPrice;
         finishedBouquet.isBouquet = true;
         finishedBouquet.inventoryIcon = bouquetIcon;
@@ -196,9 +196,14 @@ public class BouquetMenuManager : MonoBehaviour
 
     }
 
-    public string CalculateName()
+    public string CalculateName(List<ItemSO> bouquetContents)
     {
-        return "hi";
+        return bouquetContents[0].itemName + " Bouquet";
+    }
+
+    public string CalculateDescription(List<ItemSO> bouquetContents)
+    {
+        return "A gorgeous bouquet, filled with " + bouquetContents[0].itemName;
     }
 
     public void ResetMenu()

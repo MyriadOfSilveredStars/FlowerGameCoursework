@@ -16,6 +16,7 @@ public class SellingManager : MonoBehaviour
     public GameObject sellMenu;
     public GameObject buyMenu;
     private bool menuActivated;
+    public TMP_Text merchantDialogue;
 
     [Header("Inventory Data")]
     public SellSlot[] sellSlot;
@@ -52,7 +53,7 @@ public class SellingManager : MonoBehaviour
 
         for (int i = 0; i < sellSlot.Length; i++)
         {
-            if(sellSlot[i].isFull == false && sellSlot[i].itemName == bouquetItem.itemName || sellSlot[i].quantity == 0)
+            if(sellSlot[i].isFull == false && sellSlot[i].itemName == bouquetItem.itemName && sellSlot[i].itemPrice == bouquetItem.sellPrice || sellSlot[i].quantity == 0)
             {
                 int leftOverItems = sellSlot[i].AddItem(bouquetItem, 1);
                 if (leftOverItems > 0)
@@ -63,6 +64,40 @@ public class SellingManager : MonoBehaviour
                 return;
                 
             }
+        }
+    }
+
+    public void RemoveBouquets(int quantity, ItemSO itemSO)
+    {
+        Debug.Log("Removing " + quantity + " of item " + itemSO.itemName);
+
+        for (int i = 0; i < sellSlot.Length; i++)
+        {
+            if(sellSlot[i].itemName == itemSO.itemName && sellSlot[i].quantity > 0)
+            {
+                sellSlot[i].quantity -= 1;
+                if (sellSlot[i].quantity == 0)
+                {
+                    sellSlot[i].RemoveItem(itemSO, 0);
+                    sellSlot[i].selectedShader.SetActive(false);
+                    sellSlot[i].thisItemSelected = false;
+                }
+                else
+                {
+                    int leftover = sellSlot[i].quantity;
+                    Debug.Log("There are " + leftover + " left");
+                    sellSlot[i].RemoveItem(itemSO, leftover);
+                }
+            }
+        }
+    }
+
+    public void DeselectAllSlots()
+    {
+        for (int i = 0; i < sellSlot.Length; i++)
+        {
+            sellSlot[i].selectedShader.SetActive(false);
+            sellSlot[i].thisItemSelected = false;
         }
     }
 
