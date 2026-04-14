@@ -10,6 +10,7 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public GameObject ShopMenu;
+    public GameObject SellMenu;
     public GameObject PlayerHUD;
     public GameObject Crosshair;
     
@@ -36,6 +37,7 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
         {
             Debug.Log("Well, be seein' ya!");
             ShopMenu.SetActive(false);
+            SellMenu.SetActive(false);
             PlayerHUD.SetActive(true);
             Crosshair.SetActive(true);
 

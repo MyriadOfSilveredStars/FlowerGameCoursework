@@ -27,6 +27,7 @@ public class InventoryManager : MonoBehaviour
     public TMP_Text itemNameText;
 
     public static event Action<ItemSO> FlowerAvailable;
+    public static event Action<ItemSO> BouquetAvailable;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -104,6 +105,12 @@ public class InventoryManager : MonoBehaviour
                 {
                     Debug.Log("Hazel, we have flowers");
                     FlowerAvailable?.Invoke(itemSO);
+                }
+                if (itemSO.isBouquet)
+                {
+                    Debug.Log("Hazel, we have a bouquet!");
+                    BouquetAvailable?.Invoke(itemSO);
+
                 }
                 return leftOverItems;
                 

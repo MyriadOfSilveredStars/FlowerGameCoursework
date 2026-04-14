@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 
 public class ShopManager : MonoBehaviour
@@ -17,11 +18,26 @@ public class ShopManager : MonoBehaviour
     public TMP_Text moneyText;
     public TMP_Text dialogue;
 
+    public GameObject buyMenu;
+    public GameObject sellMenu;
+
+    private bool menuActivated;
+
     private void Start()
     {
         inventoryManager = GameObject.Find("Canvas - Inventory").GetComponent<InventoryManager>();
         PopulateShopItems();
         moneyText.text = "£" + inventoryManager.money.ToString();
+    }
+
+    void OnEnable()
+    {
+        SellBuyButton.GoToSellMenu += ChangeMenu;
+    }
+
+    void OnDisable()
+    {
+        SellBuyButton.GoToSellMenu += ChangeMenu;
     }
 
     public void PopulateShopItems()
@@ -72,6 +88,13 @@ public class ShopManager : MonoBehaviour
             
         }
         return false;
+    }
+
+    private void ChangeMenu()
+    {
+        sellMenu.SetActive(true);
+        buyMenu.SetActive(false);
+        menuActivated = false;
     }
 
 }
