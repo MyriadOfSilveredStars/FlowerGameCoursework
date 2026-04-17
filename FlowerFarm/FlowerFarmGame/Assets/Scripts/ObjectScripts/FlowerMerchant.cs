@@ -13,6 +13,8 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
     public GameObject SellMenu;
     public GameObject PlayerHUD;
     public GameObject Crosshair;
+
+    private DayManager dayManager;
     
     private bool menuOpen;
 
@@ -22,18 +24,44 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
     [TextArea] public string[] dialogueOptionsSummer;
     [TextArea] public string[] dialogueOptionsAutumn;
     [TextArea] public string[] dialogueOptionsWinter;
+
+    public string[] seasonDialogueOptions;
     [TextArea] public string[] noMoneyDialogue;
 
     void Start()
     {
         ShopMenu.SetActive(false);
         menuOpen = false;
+        
+
+        dayManager = GameObject.Find("DaySkipper").GetComponent<DayManager>();
+
+        switch (dayManager.Season)
+        {
+            case "SPRING":
+                seasonDialogueOptions = dialogueOptionsSpring;
+                break;
+            
+            case "SUMMER":
+                seasonDialogueOptions = dialogueOptionsSummer;
+                break;
+
+            case "AUTUMN":
+                seasonDialogueOptions = dialogueOptionsAutumn;
+                break;
+
+            case "WINTER":
+                seasonDialogueOptions = dialogueOptionsWinter;
+                break;
+        }
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && menuOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && menuOpen)
         {
             Debug.Log("Well, be seein' ya!");
             ShopMenu.SetActive(false);
@@ -52,19 +80,23 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log("Howdy. I'm your local flower merchant");
+        if (menuOpen == false)
+        {
+            Debug.Log("Howdy. I'm your local flower merchant");
+            dialogue.text = seasonDialogueOptions[randomDialogue()];
 
-        ShopMenu.SetActive(true);
-        PlayerHUD.SetActive(false);
-        Crosshair.SetActive(false);
+            ShopMenu.SetActive(true);
+            PlayerHUD.SetActive(false);
+            Crosshair.SetActive(false);
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
-        Time.timeScale = 0;
+            Time.timeScale = 0;
 
-        menuOpen = true;
-        dialogue.text = dialogueOptionsSpring[randomDialogue()];
+            menuOpen = true;
+        }
+        
         
     }
 

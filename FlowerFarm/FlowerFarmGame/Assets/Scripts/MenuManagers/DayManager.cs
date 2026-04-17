@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DayManager : MonoBehaviour, IInteractable 
 { //this will manage the days that the player has gone through
@@ -25,7 +26,6 @@ public class DayManager : MonoBehaviour, IInteractable
     {
         daysGone = 1;
         string[] Seasons = {"SPRING", "SUMMER", "AUTUMN", "WINTER"};
-        Season = Seasons[0];
         dayCounterText.text = "Day : " + daysGone.ToString();
         seasonCounterText.text = Season;
 
@@ -62,8 +62,7 @@ public class DayManager : MonoBehaviour, IInteractable
                 if (match)
                 {
                     Debug.Log("Changing Season!");
-                    changeSeason();
-                    seasonCounterText.text = Season;
+                    seasonManager.ChangeSeason(Season);
                 }
                 else
                 {

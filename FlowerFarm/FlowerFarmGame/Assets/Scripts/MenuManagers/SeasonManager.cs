@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 using System.Linq;
 
@@ -36,6 +37,12 @@ public class SeasonManager : MonoBehaviour
         SpringContents.Add("Forget-Me-Nots", 5);
         SpringContents.Add("Bluebells", 2);
         SpringContents.Add("Daffodils", 3);
+
+        //summer items
+        SummerContents.Add("Dahlias", 5);
+        SummerContents.Add("Lavender", 4);
+        SummerContents.Add("Alliums", 7);
+        SummerContents.Add("Sunflowers", 1);
 
         //do the other seasons later they aren't important yet
     }
@@ -83,7 +90,23 @@ public class SeasonManager : MonoBehaviour
             return false;
         }
 
+    }
 
-
+    public void ChangeSeason(string prevSeason)
+    {
+        switch (prevSeason)
+        {
+            case "SPRING":
+                SceneManager.LoadScene(1); //loads summer
+                break;
+            case "SUMMER":
+                SceneManager.LoadScene(2); //loads autumn
+                break;
+            case "AUTUMN":
+                SceneManager.LoadScene(3); //loads winter
+                break;
+            //there doesn't need to be one for Winter, as there isn't a season that comes after
+        }
+        
     }
 }

@@ -11,6 +11,9 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private List<ShopItems> autumnItems;
     [SerializeField] private List<ShopItems> winterItems;
 
+    [SerializeField] private List<ShopItems> seasonalItems; //to hold the chosen season's items
+    private DayManager dayManager;
+
     [SerializeField] private ShopSlot[] shopSlots;
 
     private InventoryManager inventoryManager;
@@ -28,6 +31,27 @@ public class ShopManager : MonoBehaviour
         inventoryManager = GameObject.Find("Canvas - Inventory").GetComponent<InventoryManager>();
         PopulateShopItems();
         moneyText.text = "£" + inventoryManager.money.ToString();
+        buyMenu.SetActive(false);
+
+        dayManager = GameObject.Find("DaySkipper").GetComponent<DayManager>();
+
+        switch (dayManager.Season)
+        {
+            case "SPRING":
+                seasonalItems = springItems;
+                break;
+            case "SUMMER":
+                seasonalItems = summerItems;
+                Debug.Log("There are " + seasonalItems.Count + " summer items");
+                break;
+            case "AUTUMN":
+                seasonalItems = autumnItems;
+                break;
+            case "WINTER":
+                seasonalItems = winterItems;
+                break;
+        }
+
     }
 
     void OnEnable()
@@ -42,14 +66,14 @@ public class ShopManager : MonoBehaviour
 
     public void PopulateShopItems()
     {
-        for (int i = 0; i < springItems.Count && i < shopSlots.Length; i++)
+        for (int i = 0; i < seasonalItems.Count && i < shopSlots.Length; i++)
         {
-            ShopItems shopItem = springItems[i];
+            ShopItems shopItem = seasonalItems[i];
             shopSlots[i].Initialize(shopItem.itemSO, shopItem.price);
             shopSlots[i].gameObject.SetActive(true);
         }
 
-        for (int i = springItems.Count; i < shopSlots.Length; i++)
+        for (int i = seasonalItems.Count; i < shopSlots.Length; i++)
         {
             shopSlots[i].gameObject.SetActive(false);
 
