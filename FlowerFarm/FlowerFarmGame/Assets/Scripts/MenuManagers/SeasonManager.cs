@@ -33,6 +33,7 @@ public class SeasonManager : MonoBehaviour
         Season = "Spring";
 
         //set up what the contents NEED to be int he dictionaries
+        //spring
         SpringContents.Add("Purple Hyacinths", 3);
         SpringContents.Add("Forget-Me-Nots", 5);
         SpringContents.Add("Bluebells", 2);
@@ -43,6 +44,13 @@ public class SeasonManager : MonoBehaviour
         SummerContents.Add("Lavender", 4);
         SummerContents.Add("Alliums", 7);
         SummerContents.Add("Sunflowers", 1);
+
+        //autumn items
+        AutumnContents.Add("", 1);
+
+        //winter items
+        
+
 
         //do the other seasons later they aren't important yet
     }
