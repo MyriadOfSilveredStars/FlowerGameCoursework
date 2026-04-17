@@ -1814,6 +1814,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 77829127}
+  - component: {fileID: 77829128}
   m_Layer: 0
   m_Name: Farmhouse
   m_TagString: Untagged
@@ -1838,6 +1839,19 @@ Transform:
   - {fileID: 859051500}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &77829128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77829126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f14284b644a5f434b576f94d4cf831c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeasonManager
+  Season: 
 --- !u!1 &78608611
 GameObject:
   m_ObjectHideFlags: 0
@@ -17032,7 +17046,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.69135416, y: 0.071690954}
   m_AnchorMax: {x: 0.94554865, y: 0.926691}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &747521273
@@ -20051,6 +20065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayManager
   daysGone: 0
   Season: Spring
+  Seasons: []
   plantSpots: []
   dayCounterText: {fileID: 1399651835}
   seasonCounterText: {fileID: 821362026}

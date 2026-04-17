@@ -10,6 +10,10 @@ public class DayManager : MonoBehaviour, IInteractable
     public int daysGone;
 
     public string Season;
+    public string[] Seasons;
+
+    private ItemHolding heldItem;
+    private SeasonManager seasonManager;
 
     public GameObject[] plantSpots;
 
@@ -20,9 +24,17 @@ public class DayManager : MonoBehaviour, IInteractable
     private void Start()
     {
         daysGone = 1;
-        Season = "SPRING";
+        string[] Seasons = {"SPRING", "SUMMER", "AUTUMN", "WINTER"};
+        Season = Seasons[0];
         dayCounterText.text = "Day : " + daysGone.ToString();
         seasonCounterText.text = Season;
+
+        seasonManager = GameObject.Find("Farmhouse").GetComponent<SeasonManager>();
+    }
+
+    private void Update()
+    {
+        heldItem = GameObject.Find("Canvas - HUD").GetComponent<ItemHolding>();
     }
 
     public void nextDay()
@@ -35,13 +47,44 @@ public class DayManager : MonoBehaviour, IInteractable
     public void changeSeason()
     {
         //changes the seasons
-        Season = "Summer";
+        Season = "SUMMER";
     }
 
     public void Interact()
     {
-        Debug.Log("Skipping to the next day...");
-        nextDay();
+        try
+        {
+            if (heldItem.heldItem.isBouquet) //check if the held item is a bouquet
+            {
+                Debug.Log("Checking bouquet contents");
+                bool match = seasonManager.CheckContents(heldItem.heldItem.bouquetContents, Season);
+
+                if (match)
+                {
+                    Debug.Log("Changing Season!");
+                    changeSeason();
+                    seasonCounterText.text = Season;
+                }
+                else
+                {
+                    Debug.Log("Skipping to the next day...");
+                    nextDay();
+                }
+                
+            }
+            else
+            {
+                Debug.Log("Skipping to the next day...");
+                nextDay();
+            }
+        }
+        catch
+        {
+            Debug.Log("Not holding a bouquet, skipping to next day instead...");
+            nextDay();
+        }
+        
+        
     }
 
 }
