@@ -151,5 +151,7 @@ MonoBehaviour:
   itemName: Fuschia
   quantity: 1
   sprite: {fileID: 21300000, guid: 68cdbe67ae97c6a41a6d0e89f22e520a, type: 3}
-  itemDescription: "\"Grace\"\n...\nHardy plants that give their name to a lovely
-    colour\nSell Price: \xA33"
+  itemSO: {fileID: 11400000, guid: 302fc04f3c397c956b6699360307495b, type: 2}
+  itemDescription: "\"Grace\"\n...\nDelicate blooms, often in pink, purple and white.
+    Giving their name to a soothing colour, they are highly prized.\nSell Price:
+    \xA39 "

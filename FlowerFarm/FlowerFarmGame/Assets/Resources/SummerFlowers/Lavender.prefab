@@ -95,6 +95,7 @@ MonoBehaviour:
   itemName: Lavender
   quantity: 1
   sprite: {fileID: 21300000, guid: 78b43e85ef33295baaa6c535218803ac, type: 3}
+  itemSO: {fileID: 11400000, guid: ec9659b9e7dbaabab9b6a8c4bf2bd1eb, type: 2}
   itemDescription: "\"Love\"\n...\nSweet smelling blooms that can make even the most
     active feel drowsy.\nSell Price: \xA32"
 --- !u!65 &-4254359663150885411

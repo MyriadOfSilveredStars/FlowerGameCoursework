@@ -32,7 +32,7 @@ public class SeasonManager : MonoBehaviour
     {   //starting season
         Season = "Spring";
 
-        //set up what the contents NEED to be int he dictionaries
+        //set up what the contents NEED to be in the dictionaries
         //spring
         SpringContents.Add("Purple Hyacinths", 3);
         SpringContents.Add("Forget-Me-Nots", 5);
@@ -46,13 +46,16 @@ public class SeasonManager : MonoBehaviour
         SummerContents.Add("Sunflowers", 1);
 
         //autumn items
-        AutumnContents.Add("", 1);
+        AutumnContents.Add("Asters", 4);
+        AutumnContents.Add("Chrysanthemums", 5);
+        AutumnContents.Add("Foxglove", 3);
+        AutumnContents.Add("Fuschias", 6);
 
         //winter items
-        
+        WinterContents.Add("Asphodels", 4);
+        WinterContents.Add("Pansies", 5);
+        WinterContents.Add("Primroses", 7);
 
-
-        //do the other seasons later they aren't important yet
     }
 
     public bool CheckContents(List<ItemSO> BouquetContents, string currentSeason)
@@ -116,5 +119,10 @@ public class SeasonManager : MonoBehaviour
             //there doesn't need to be one for Winter, as there isn't a season that comes after
         }
         
+    }
+
+    public void EndGame() //in winter, interacting with the grave ends the game
+    {
+        SceneManager.LoadScene(4);
     }
 }

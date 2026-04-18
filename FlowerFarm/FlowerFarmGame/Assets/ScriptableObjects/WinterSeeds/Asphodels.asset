@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea17852f8a3b39ea83814cb32ab16ac, type: 3}
+  m_Name: Asphodels
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  itemName: Asphodels
+  itemDescription: '"I remember your grave"
+
+    ...
+
+    In Greek Mythos, the Asphodel
+    Fields were the resting place of souls
+
+    Sell Price: 5'
+  inventoryIcon: {fileID: 21300000, guid: 7bf04ab628add162a8524b692fdf7aec, type: 3}
+  prefab: {fileID: 8695094918419389498, guid: cf29623792d34312a9fda1e7e15cddc7, type: 3}
+  flowerSO: {fileID: 0}
+  growTime: 9
+  buyPrice: 4
+  sellPrice: 5
+  isFlower: 1
+  isBouquet: 0
+  isSeed: 0
+  bouquetContents: []

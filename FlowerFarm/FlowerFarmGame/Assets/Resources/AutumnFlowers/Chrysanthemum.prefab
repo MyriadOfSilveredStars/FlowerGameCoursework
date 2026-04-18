@@ -129,5 +129,6 @@ MonoBehaviour:
   itemName: Chrysanthemum
   quantity: 1
   sprite: {fileID: 21300000, guid: 0a7f8c02b46f07745892b3b9a679bf6e, type: 3}
-  itemSO: {fileID: 0}
-  itemDescription: 
+  itemSO: {fileID: 11400000, guid: b811ada7750e588d2a8820ef82c3bf0c, type: 2}
+  itemDescription: "\"Love\"\n...\nA flowering herb with a fragrant, autumnal bloom.
+    Excellent flowers to create striking bouquets.\nSell Price: \xA310 "

@@ -112,5 +112,6 @@ MonoBehaviour:
   itemName: Sunflower
   quantity: 1
   sprite: {fileID: 21300000, guid: 25f1cc8275875ddc499ff3ac6b8c67f9, type: 3}
+  itemSO: {fileID: 11400000, guid: 74631758a62ea26c9ad05ec732d4d83b, type: 2}
   itemDescription: "\"Adoration & Pride\"\n...\nGiant bloom that always faces the
     sun. Can grow to great heights when well tended\nSell Price: \xA35"

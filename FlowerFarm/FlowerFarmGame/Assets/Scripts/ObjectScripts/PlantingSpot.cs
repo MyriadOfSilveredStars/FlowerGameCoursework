@@ -18,6 +18,7 @@ public class PlantingSpot : MonoBehaviour, IInteractable
     private ItemSO itemPlanted;
 
     private InventoryManager inventoryManager;
+    private HazelThoughts hazelThoughts;
 
     public static event Action<int, int> KYS;
 
@@ -32,6 +33,7 @@ public class PlantingSpot : MonoBehaviour, IInteractable
         spotCoords = this.transform.position;
 
         inventoryManager = GameObject.Find("Canvas - Inventory").GetComponent<InventoryManager>();
+        hazelThoughts = GameObject.Find("Canvas - HazelThoughts").GetComponent<HazelThoughts>();
 
     }
 
@@ -84,13 +86,15 @@ public class PlantingSpot : MonoBehaviour, IInteractable
                 }
                 else if (!heldItem.heldItem.isSeed)
                 {
+                    hazelThoughts.NotASeed();
                     Debug.Log("You can't plant that, it's not a seed!");
                 }
                 
             }
         }
         catch
-        {
+        {   
+            hazelThoughts.NotHoldingAnythingSeed();
             Debug.Log("You aren't holding anything to plant!");
         }
         

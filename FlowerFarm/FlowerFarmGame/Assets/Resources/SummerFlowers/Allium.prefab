@@ -151,6 +151,7 @@ MonoBehaviour:
   itemName: Allium
   quantity: 1
   sprite: {fileID: 21300000, guid: 0ad5dc8848284eca884ad5c190fc3625, type: 3}
+  itemSO: {fileID: 11400000, guid: 118735533acf588ecb30c63762b534be, type: 2}
   itemDescription: "\"Patience & Unity\"\n...\nFragrant growth from many pungeant
     roots  such as onions and garlic. This one was grown for the flower alone.\nSell
     Price: \xA34"

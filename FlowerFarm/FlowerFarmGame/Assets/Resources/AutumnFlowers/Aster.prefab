@@ -129,5 +129,6 @@ MonoBehaviour:
   itemName: Aster
   quantity: 1
   sprite: {fileID: 21300000, guid: 0ad5dc8848284eca884ad5c190fc3625, type: 3}
-  itemSO: {fileID: 0}
-  itemDescription: 
+  itemSO: {fileID: 11400000, guid: 4cec3080a4df752f6810f8d69437f08d, type: 2}
+  itemDescription: "\"Trusting Love\"\n...\nPretty perennial flowers that can last
+    until the very end of the autumn season.\nSell Price: \xA37"

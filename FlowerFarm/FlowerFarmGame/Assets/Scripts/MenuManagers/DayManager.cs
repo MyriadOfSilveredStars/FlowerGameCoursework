@@ -15,6 +15,7 @@ public class DayManager : MonoBehaviour, IInteractable
 
     private ItemHolding heldItem;
     private SeasonManager seasonManager;
+    private HazelThoughts hazelThoughts;
 
     public GameObject[] plantSpots;
 
@@ -30,6 +31,7 @@ public class DayManager : MonoBehaviour, IInteractable
         seasonCounterText.text = Season;
 
         seasonManager = GameObject.Find("Farmhouse").GetComponent<SeasonManager>();
+        hazelThoughts = GameObject.Find("Canvas - HazelThoughts").GetComponent<HazelThoughts>();
     }
 
     private void Update()
@@ -59,14 +61,19 @@ public class DayManager : MonoBehaviour, IInteractable
                 Debug.Log("Checking bouquet contents");
                 bool match = seasonManager.CheckContents(heldItem.heldItem.bouquetContents, Season);
 
-                if (match)
+                if (match && Season != "WINTER") //for all seasons save winter, use the farmhouse
                 {
                     Debug.Log("Changing Season!");
                     seasonManager.ChangeSeason(Season);
                 }
+                else if(match && Season == "WINTER")
+                {
+                    Debug.Log("This isn't where this needs to go...");
+                }
                 else
                 {
                     Debug.Log("Skipping to the next day...");
+                    hazelThoughts.NotAMatch();
                     nextDay();
                 }
                 
@@ -74,12 +81,14 @@ public class DayManager : MonoBehaviour, IInteractable
             else
             {
                 Debug.Log("Skipping to the next day...");
+                hazelThoughts.NotABouquet();
                 nextDay();
             }
         }
         catch
         {
             Debug.Log("Not holding a bouquet, skipping to next day instead...");
+            hazelThoughts.NothingHeld();
             nextDay();
         }
         

@@ -151,5 +151,6 @@ MonoBehaviour:
   itemName: Foxglove
   quantity: 1
   sprite: {fileID: 21300000, guid: a523dc0fcdbc59ae89174e92350af340, type: 3}
+  itemSO: {fileID: 11400000, guid: 6c637907bbafe792cbfccc98ca3228f4, type: 2}
   itemDescription: "\"Delirium\"\n...\nA toxic grouping of flowers that are nevertheless
-    charming to see\nSell Price: \xA36\n"
+    charming to see\nSell Price: \xA38\n"
