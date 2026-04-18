@@ -30,7 +30,7 @@ public class SeasonManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   //starting season
-        Season = "Spring";
+        Season = "SPRING";
 
         //set up what the contents NEED to be in the dictionaries
         //spring
@@ -56,6 +56,27 @@ public class SeasonManager : MonoBehaviour
         WinterContents.Add("Pansies", 5);
         WinterContents.Add("Primroses", 7);
 
+    }
+
+    public Dictionary<string, int> GetRequiredBouquet()
+    {
+        switch (Season)
+        {
+            case "SPRING":
+                return SpringContents;
+
+            case "SUMMER":
+                return SummerContents;
+
+            case "AUTUMN":
+                return AutumnContents;
+
+            case "WINTER":
+                return WinterContents;
+            
+            default:
+                 return SpringContents;
+        }
     }
 
     public bool CheckContents(List<ItemSO> BouquetContents, string currentSeason)
@@ -108,13 +129,16 @@ public class SeasonManager : MonoBehaviour
         switch (prevSeason)
         {
             case "SPRING":
-                SceneManager.LoadScene(1); //loads summer
+                Season = "SUMMER";
+                SceneManager.LoadScene(2); //loads summer
                 break;
             case "SUMMER":
-                SceneManager.LoadScene(2); //loads autumn
+                Season = "AUTUMN";
+                SceneManager.LoadScene(3); //loads autumn
                 break;
             case "AUTUMN":
-                SceneManager.LoadScene(3); //loads winter
+                Season = "WINTER";
+                SceneManager.LoadScene(4); //loads winter
                 break;
             //there doesn't need to be one for Winter, as there isn't a season that comes after
         }
@@ -123,6 +147,6 @@ public class SeasonManager : MonoBehaviour
 
     public void EndGame() //in winter, interacting with the grave ends the game
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(5);
     }
 }

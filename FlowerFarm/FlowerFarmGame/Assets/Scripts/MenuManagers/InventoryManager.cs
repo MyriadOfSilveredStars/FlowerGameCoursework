@@ -26,6 +26,8 @@ public class InventoryManager : MonoBehaviour
     public TMP_Text itemDescriptionText;
     public TMP_Text itemNameText;
 
+    private SeasonManager seasonManager;
+
     public static event Action<ItemSO> FlowerAvailable;
     public static event Action<ItemSO> BouquetAvailable;
 
@@ -38,6 +40,10 @@ public class InventoryManager : MonoBehaviour
 
         money = 100;
         moneyText.text = "£" + money.ToString();
+        seasonManager = GameObject.Find("Farmhouse").GetComponent<SeasonManager>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         DeselectAllSlots();
     }
@@ -76,6 +82,7 @@ public class InventoryManager : MonoBehaviour
             shopMenu.SetActive(false);
 
             menuActivated = true;
+            DeselectAllSlots();
 
             //make the cursor visibile and allow player to move it
             Cursor.lockState = CursorLockMode.None;
@@ -151,11 +158,26 @@ public class InventoryManager : MonoBehaviour
             itemSlot[i].selectedShader.SetActive(false);
             itemSlot[i].thisItemSelected = false;
         }
+
+        showRequiredBouquet();
     }
 
     public void updateDescription(string newName, string newDesc)
     {
         itemDescriptionText.text = newDesc;
         itemNameText.text = newName;
+    }
+
+    public void showRequiredBouquet()
+    {
+        Dictionary<string, int> bouquetRequirements = seasonManager.GetRequiredBouquet();
+        string requirements = "";
+
+        foreach (var ele in bouquetRequirements){
+            requirements = requirements + $"{ele.Key} x{ele.Value} \n";
+        }
+
+        itemDescriptionText.text = requirements;
+        itemNameText.text = "Requested Bouquet:";
     }
 }
