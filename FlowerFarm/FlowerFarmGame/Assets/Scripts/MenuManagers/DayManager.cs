@@ -68,6 +68,7 @@ public class DayManager : MonoBehaviour, IInteractable
                 }
                 else if(match && Season == "WINTER")
                 {
+                    hazelThoughts.WinterWrongSpot();
                     Debug.Log("This isn't where this needs to go...");
                 }
                 else
