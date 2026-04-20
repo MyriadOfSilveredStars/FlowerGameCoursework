@@ -95,6 +95,7 @@ MonoBehaviour:
   itemName: Pansies
   quantity: 1
   sprite: {fileID: 21300000, guid: 12b559f793d9cf1139ccbf3772af918c, type: 3}
+  itemSO: {fileID: 11400000, guid: 6e3c49bb24cd183cda2e47fe35a3f21f, type: 2}
   itemDescription: "\"Remembrance\"\n...\nCluster of purple blooms that are the first
     to arrive in the cold winters\nSell Price: \xA34"
 --- !u!65 &-7614586533813515740

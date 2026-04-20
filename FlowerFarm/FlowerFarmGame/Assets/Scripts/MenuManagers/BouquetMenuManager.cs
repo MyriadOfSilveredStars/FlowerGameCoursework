@@ -114,7 +114,15 @@ public class BouquetMenuManager : MonoBehaviour
 
     public void RecieveFlowers(ItemSO flower)
     {
-        NoFlowerMessage.SetActive(false);
+        try
+        {
+            NoFlowerMessage.SetActive(false);
+        }
+        catch
+        {
+            Debug.Log("I am honestly not sure why it's decided this doesn't exist");
+        }
+        
         Debug.Log("Copy Housten, we have flowers. Some " + flower.itemName + " to be exact");
 
         for (int i = 0; i < FlowerChoices.Length; i++)

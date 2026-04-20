@@ -48,7 +48,7 @@ public class SeasonManager : MonoBehaviour
         //autumn items
         AutumnContents.Add("Asters", 4);
         AutumnContents.Add("Chrysanthemums", 5);
-        AutumnContents.Add("Foxglove", 3);
+        AutumnContents.Add("Foxgloves", 3);
         AutumnContents.Add("Fuschias", 6);
 
         //winter items
@@ -81,6 +81,7 @@ public class SeasonManager : MonoBehaviour
 
     public bool CheckContents(List<ItemSO> BouquetContents, string currentSeason)
     {
+        PlayerContents.Clear();
         //first, create a dictionary for the player's bouquet
         for (int i = 0; i < BouquetContents.Count; i++){
             //if the dictionary is empty (it will be at the start)
@@ -131,17 +132,17 @@ public class SeasonManager : MonoBehaviour
             case "SPRING":
                 Season = "SUMMER";
                 MainManager.Instance.currentSeason = "SUMMER";
-                SceneManager.LoadScene(2); //loads summer
+                SceneManager.LoadScene(6); //loads summer
                 break;
             case "SUMMER":
                 Season = "AUTUMN";
                 MainManager.Instance.currentSeason = "AUTUMN";
-                SceneManager.LoadScene(3); //loads autumn
+                SceneManager.LoadScene(6); //loads autumn
                 break;
             case "AUTUMN":
                 Season = "WINTER";
                 MainManager.Instance.currentSeason = "WINTER";
-                SceneManager.LoadScene(4); //loads winter
+                SceneManager.LoadScene(6); //loads winter
                 break;
             //there doesn't need to be one for Winter, as there isn't a season that comes after
         }

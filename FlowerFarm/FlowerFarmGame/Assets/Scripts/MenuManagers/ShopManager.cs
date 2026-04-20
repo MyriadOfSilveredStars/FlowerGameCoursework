@@ -116,9 +116,18 @@ public class ShopManager : MonoBehaviour
 
     private void ChangeMenu()
     {
-        sellMenu.SetActive(true);
-        buyMenu.SetActive(false);
-        menuActivated = false;
+        try
+        {
+            sellMenu.SetActive(true);
+            buyMenu.SetActive(false);
+            menuActivated = false;
+        }
+        catch
+        {
+            Debug.Log("It happened again not sure why");
+            sellMenu = GameObject.Find("SellingScreen");
+        }
+        
     }
 
 }

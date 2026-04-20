@@ -20,7 +20,7 @@ public class TitlePage : MonoBehaviour
         {
             case "BEGIN":
                 Debug.Log("Starting game...");
-                SceneManager.LoadScene(1); //load the first season of the game
+                SceneManager.LoadScene(6); //load the first dialogue of the game
                 break;
             case "CONTROL":
                 Debug.Log("Looking at controls..."); //load the controls screen

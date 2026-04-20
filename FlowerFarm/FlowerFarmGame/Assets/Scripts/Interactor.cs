@@ -25,28 +25,22 @@ public class Interactor : MonoBehaviour
     void Update()
     {
         Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
-        try
+        
+        if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
         {
-            if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
+            if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObject))
+            {
+                CrosshairText.text = "Interact [E]";
+                if (Input.GetKeyDown(KeyCode.E) && interactObject != null)
                 {
-                    if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObject))
-                    {
-                        CrosshairText.text = "Interact [E]";
-                        if (Input.GetKeyDown(KeyCode.E))
-                        {
-                            interactObject.Interact();
-                        }
-                        
-                    }
-                    else
-                    {
-                        CrosshairText.text = "";
-                    }
+                    interactObject.Interact();
                 }
-        }
-        catch
-        {
-            Debug.Log("If an item is null, for some reason, this will be thrown");
+                
+            }
+            else
+            {
+                CrosshairText.text = "";
+            }
         }
         
     }

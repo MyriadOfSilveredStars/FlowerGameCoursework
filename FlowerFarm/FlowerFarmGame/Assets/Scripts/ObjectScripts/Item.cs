@@ -38,18 +38,22 @@ public class Item : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log("A hit, a fine hit!");
-
-        int leftOverItems = inventoryManager.AddItem(quantity, itemSO);
-
-        if (leftOverItems <= 0)
+        if (gameObject != null)
         {
-            Destroy(gameObject);
+            Debug.Log("A hit, a fine hit!");
+
+            int leftOverItems = inventoryManager.AddItem(quantity, itemSO);
+
+            if (leftOverItems <= 0)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                quantity = leftOverItems;
+            }
         }
-        else
-        {
-            quantity = leftOverItems;
-        }
+        
         
     }
 }

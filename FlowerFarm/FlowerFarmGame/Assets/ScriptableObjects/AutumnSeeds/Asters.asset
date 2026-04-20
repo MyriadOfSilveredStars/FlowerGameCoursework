@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea17852f8a3b39ea83814cb32ab16ac, type: 3}
   m_Name: Asters
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: 
+  itemName: Asters
   itemDescription: "\"Trusting Love\"\n...\nPretty perennial flowers that can last
     until the very end of the autumn season.\nSell Price: \xA37"
   inventoryIcon: {fileID: 21300000, guid: ca82ef8fee3b74c9395f33d929dac1f5, type: 3}

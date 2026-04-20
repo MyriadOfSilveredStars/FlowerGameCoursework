@@ -28,6 +28,7 @@ public class GraveScript : MonoBehaviour, IInteractable
             {
                 Debug.Log("Checking bouquet contents");
                 bool match = seasonManager.CheckContents(heldItem.heldItem.bouquetContents, "WINTER");
+                Debug.Log("Match : " + match.ToString());
 
                 if (match) //for all seasons save winter, use the farmhouse
                 {
