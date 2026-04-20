@@ -44,6 +44,32 @@ public class HazelThoughts : MonoBehaviour
     }
     // there will be various small functions to change the dialogue text
 
+    // SEASON STARTING DIALOGUE
+    public void SpringStart()
+    {
+        DialogueText.text = "New year, new me. I've got a list for a special bouquet I should deliver to the house, when I have time";
+        ActivateText();
+    }
+
+    public void SummerStart()
+    {
+        DialogueText.text = "Lovely and warm out! Let's see what's on the list for this season's bouquet...";
+        ActivateText();
+    }
+
+    public void AutumnStart()
+    {
+        DialogueText.text = "Another summer fades... Time for another special request";
+        ActivateText();
+    }
+
+    public void WinterStart()
+    {
+        DialogueText.text = "..........";
+        ActivateText();
+    }
+
+
     //PLANTING ERRORS DIALOGUE
     public void NotASeed()
     {

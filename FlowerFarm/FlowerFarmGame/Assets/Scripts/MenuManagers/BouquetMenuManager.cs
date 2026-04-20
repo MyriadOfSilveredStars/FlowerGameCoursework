@@ -180,19 +180,27 @@ public class BouquetMenuManager : MonoBehaviour
 
     public void CreateBouquet()
     {
-        Debug.Log("Making dis bouquet");
-        ItemSO finishedBouquet = ScriptableObject.CreateInstance<ItemSO>();
+        try
+        {
+            Debug.Log("Making dis bouquet");
+            ItemSO finishedBouquet = ScriptableObject.CreateInstance<ItemSO>();
 
-        finishedBouquet.itemName = CalculateName(BouquetSelection);
-        finishedBouquet.itemDescription = CalculateDescription(BouquetSelection);
-        finishedBouquet.sellPrice = bouquetPrice;
-        finishedBouquet.isBouquet = true;
-        finishedBouquet.inventoryIcon = bouquetIcon;
+            finishedBouquet.itemName = CalculateName(BouquetSelection);
+            finishedBouquet.itemDescription = CalculateDescription(BouquetSelection);
+            finishedBouquet.sellPrice = bouquetPrice;
+            finishedBouquet.isBouquet = true;
+            finishedBouquet.inventoryIcon = bouquetIcon;
 
-        finishedBouquet.bouquetContents = BouquetSelection;
-        inventoryManager.AddItem(1, finishedBouquet);
+            finishedBouquet.bouquetContents = BouquetSelection;
+            inventoryManager.AddItem(1, finishedBouquet);
 
-        ResetMenu();
+            ResetMenu();
+        }
+        catch
+        {
+            Debug.Log("No items in bouquet...");
+        }
+        
 
     }
 

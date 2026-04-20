@@ -38,8 +38,9 @@ public class InventoryManager : MonoBehaviour
         PlayerHUD.SetActive(true);
         Crosshair.SetActive(true);
 
-        money = 100;
+        money = MainManager.Instance.playerMoney;
         moneyText.text = "£" + money.ToString();
+        
         seasonManager = GameObject.Find("Farmhouse").GetComponent<SeasonManager>();
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -51,6 +52,8 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MainManager.Instance.playerMoney = this.money;
+
         if (Input.GetKeyDown(KeyCode.Tab) && menuActivated)
         {   
             Debug.Log("Tab pressed");

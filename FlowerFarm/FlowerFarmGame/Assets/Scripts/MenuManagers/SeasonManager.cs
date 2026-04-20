@@ -30,7 +30,7 @@ public class SeasonManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   //starting season
-        Season = "SPRING";
+        Season = MainManager.Instance.currentSeason;
 
         //set up what the contents NEED to be in the dictionaries
         //spring
@@ -60,7 +60,7 @@ public class SeasonManager : MonoBehaviour
 
     public Dictionary<string, int> GetRequiredBouquet()
     {
-        switch (Season)
+        switch (MainManager.Instance.currentSeason)
         {
             case "SPRING":
                 return SpringContents;
@@ -130,14 +130,17 @@ public class SeasonManager : MonoBehaviour
         {
             case "SPRING":
                 Season = "SUMMER";
+                MainManager.Instance.currentSeason = "SUMMER";
                 SceneManager.LoadScene(2); //loads summer
                 break;
             case "SUMMER":
                 Season = "AUTUMN";
+                MainManager.Instance.currentSeason = "AUTUMN";
                 SceneManager.LoadScene(3); //loads autumn
                 break;
             case "AUTUMN":
                 Season = "WINTER";
+                MainManager.Instance.currentSeason = "WINTER";
                 SceneManager.LoadScene(4); //loads winter
                 break;
             //there doesn't need to be one for Winter, as there isn't a season that comes after

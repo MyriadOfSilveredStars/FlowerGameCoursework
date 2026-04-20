@@ -25,6 +25,7 @@ public class DayManager : MonoBehaviour, IInteractable
 
     private void Start()
     {
+        
         daysGone = 1;
         string[] Seasons = {"SPRING", "SUMMER", "AUTUMN", "WINTER"};
         dayCounterText.text = "Day : " + daysGone.ToString();

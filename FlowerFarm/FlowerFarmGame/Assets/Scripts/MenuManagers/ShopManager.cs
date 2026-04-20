@@ -35,7 +35,7 @@ public class ShopManager : MonoBehaviour
 
         dayManager = GameObject.Find("DaySkipper").GetComponent<DayManager>();
 
-        switch (dayManager.Season)
+        switch (MainManager.Instance.currentSeason)
         {
             case "SPRING":
                 seasonalItems = springItems;
