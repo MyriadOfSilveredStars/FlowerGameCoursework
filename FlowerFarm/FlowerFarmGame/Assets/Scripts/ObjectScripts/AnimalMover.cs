@@ -15,6 +15,12 @@ public class AnimalMover : MonoBehaviour
     bool walkpointSet; //does this specific creature have a destination or not
     [SerializeField] float range; //how far they can walk
 
+    //for the less random patrol
+    public Transform[] moveSpots;
+    private int randomSpot; //this will pick a random position
+    private float waitTime;
+    public float startWaitTime;
+
 
 
     void Start()
@@ -29,45 +35,43 @@ public class AnimalMover : MonoBehaviour
 
         agent = GetComponent<NavMeshAgent>();
 
+        randomSpot = Random.Range(0, moveSpots.Length); //find a starting spot
+        waitTime = startWaitTime;
+
     }
 
     void Update()
     {
-        Patrol();
+        PatrolField();
     }
 
-    public void Patrol()
+    public void PatrolField()
     {
-        if (!walkpointSet)
-        {
-            SearchForDestination();
-        }
+        agent.SetDestination(moveSpots[randomSpot].position);
+        animator.SetBool("Walking", true);
+        animator.SetBool("Grazing", false);
+        animator.SetBool("Idling", false);
 
-        if (walkpointSet)
+        if(Vector3.Distance(transform.position, moveSpots[randomSpot].position) < 1f)
         {
-            agent.SetDestination(destinationPoint);
+            if(waitTime <= 0) //is it time for the animal to move on
+            {
+                animator.SetBool("Walking", true);
+                animator.SetBool("Grazing", false);
+                animator.SetBool("Idling", false);
+                randomSpot = Random.Range(0, moveSpots.Length); //get a new spot
+                waitTime = startWaitTime; //restart waiting timer
+            }
+            else
+            {
+                waitTime -= Time.deltaTime; //otherwise reduce timer
+                animator.SetBool("Grazing", true);
+                animator.SetBool("Walking", false);
+                animator.SetBool("Idling", false);
+            }
         }
-
-        if(Vector3.Distance(transform.position, destinationPoint) < 10)
-        {
-            walkpointSet = false;
-        }
-    }
-
-    public void SearchForDestination()
-    {
-        float z = Random.Range(-range, range); //place to move on z-axis
-        float x = Random.Range(-range, range); //place to move on x-axis
         
-        destinationPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
-
-        if(Physics.Raycast(destinationPoint, Vector3.down, groundLayer))
-        {
-            walkpointSet = true;
-        }
     }
-
-   
 
     //boolean changing functions
     public void Idle()
