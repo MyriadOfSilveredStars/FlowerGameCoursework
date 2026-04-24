@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5139008605571405144}
   - component: {fileID: 5743946459747965747}
   - component: {fileID: 1897789279250985932}
+  - component: {fileID: 3740578271897861775}
   m_Layer: 0
   m_Name: FlowerMerchant
   m_TagString: Untagged
@@ -103,7 +104,30 @@ MonoBehaviour:
   - "\u2026"
   - "\u2026"
   - "\u2026"
+  seasonDialogueOptions: []
   noMoneyDialogue: []
+--- !u!95 &3740578271897861775
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6219245158991279692}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0b11affd8d720ffa48f34f00a95ebfeb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5996337125537310096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196,19 +220,52 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -595094987839680477, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.12235862
+      objectReference: {fileID: 0}
+    - target: {fileID: -595094987839680477, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.11778816
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
       propertyPath: m_Name
       value: CowboyRio_Unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262033918974715997, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.12235862
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262033918974715997, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.11778816
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 36a0070701a39484c9595761b3026198, type: 2}
+    - target: {fileID: 8052196607835650671, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.012442643
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052196607835650671, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7739528
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052196607835650671, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.011274944
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052196607835650671, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.6330207
+      objectReference: {fileID: 0}
     - target: {fileID: 8809703120019107539, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8bbc505198f98af41873dbb347b1bb7b, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 3ba5df55de38cf04d86504dab0da7464, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using TMPro;
+using UnityEngine.EventSystems;
+using System;
 
 interface IInteractable
 {
@@ -16,6 +18,8 @@ public class Interactor : MonoBehaviour
 
     public Transform InteractorSource;
     public float InteractRange;
+
+    public static event Action<bool> TalkingTime;
 
     void Start()
     {
@@ -31,6 +35,7 @@ public class Interactor : MonoBehaviour
             if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObject))
             {
                 CrosshairText.text = "Interact [E]";
+                TalkingTime?.Invoke(true); //if you are interacting with the merchant, the animation will change
                 if (Input.GetKeyDown(KeyCode.E) && interactObject != null)
                 {
                     interactObject.Interact();
@@ -40,6 +45,7 @@ public class Interactor : MonoBehaviour
             else
             {
                 CrosshairText.text = "";
+                TalkingTime?.Invoke(false);
             }
         }
         

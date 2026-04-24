@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits&Title/Credits.unity
     guid: e75618a480cb64a2a8e3617b53d9583c
+  - enabled: 1
+    path: Assets/Scenes/Credits&Title/Transition.unity
+    guid: 489722e756f6445f5acb298c8568a538
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05

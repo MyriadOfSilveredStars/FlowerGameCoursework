@@ -28,12 +28,13 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
     public string[] seasonDialogueOptions;
     [TextArea] public string[] noMoneyDialogue;
 
+    private Animator animator;
+
     void Start()
     {
         ShopMenu.SetActive(false);
         menuOpen = false;
         
-
         dayManager = GameObject.Find("DaySkipper").GetComponent<DayManager>();
 
         switch (dayManager.Season)
@@ -55,6 +56,7 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
                 break;
         }
 
+        animator = GameObject.Find("Samiarose").GetComponent<Animator>();
         
     }
 
@@ -75,6 +77,31 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
             Time.timeScale = 1;
 
             menuOpen = false;
+        }
+    }
+
+    public void OnEnable()
+    {
+        Interactor.TalkingTime += changeAnimation;
+    }
+
+    public void Disable()
+    {
+        Interactor.TalkingTime -= changeAnimation;
+    }
+
+    public void changeAnimation(bool facing)
+    {
+        if (facing)
+        {
+            animator.SetBool("Talking", true);
+            animator.SetBool("Idling", false);
+        }
+
+        if (facing == false)
+        {
+            animator.SetBool("Idling", true);
+            animator.SetBool("Talking", false);
         }
     }
 
