@@ -11,11 +11,23 @@ using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 
 
-public class TitleButtons : MonoBehaviour, IPointerClickHandler
+public class TitleButtons : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public string buttonName;
     public static event Action<string> OnOptionChosen;
+    public static event Action<string, bool> OnOptionHovered;
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("The " + buttonName + " has been hovered over");
+        OnOptionHovered?.Invoke(buttonName, true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log("The " + buttonName + " is no longer hovered over");
+        OnOptionHovered?.Invoke(buttonName, false);
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
