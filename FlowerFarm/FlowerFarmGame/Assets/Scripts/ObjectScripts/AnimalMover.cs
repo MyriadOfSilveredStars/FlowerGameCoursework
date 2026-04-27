@@ -9,6 +9,8 @@ public class AnimalMover : MonoBehaviour
 
     public NavMeshAgent agent;
     [SerializeField] private LayerMask groundLayer, playerLayer;
+    [SerializeField] private GameObject player;
+    private float runDistance = 10.0f;
 
     //for the random patrol
     Vector3 destinationPoint;
@@ -42,11 +44,54 @@ public class AnimalMover : MonoBehaviour
 
     void Update()
     {
-        PatrolField();
+        switch (animalType)
+        {
+            case "HORSE":
+                PatrolField();
+                break;
+            case "STAG":
+                //logic to check if player is nearby
+                float distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+                if (distanceFromPlayer <= runDistance) //run from player if too close
+                {
+                    animator.SetBool("Running", true);
+                    animator.SetBool("Walking", false);
+                    animator.SetBool("Idling", false);
+                    RunAway();
+                }
+                else
+                {
+                    animator.SetBool("Running", false);
+                    animator.SetBool("Walking", true);
+                    PatrolField();
+                }
+                break;
+
+            case "DOG":
+                //logic to let dog wander around
+                //or be following the player
+                break;
+        }
+        
+    }
+
+    public void RunAway()
+    {
+        //change animation to running
+        animator.SetBool("Running", true);
+        animator.SetBool("Walking", false);
+        animator.SetBool("Idling", false);
+
+        agent.speed = 8f; //running should be faster
+
+        Vector3 dirToPlayer = transform.position - player.transform.position; //locate the player's direction
+        Vector3 newPos = transform.position + dirToPlayer; //move away from that direction
+        agent.SetDestination(newPos); //move the agent
     }
 
     public void PatrolField()
     {
+        agent.speed = 1.2f;
         agent.SetDestination(moveSpots[randomSpot].position);
         animator.SetBool("Walking", true);
         animator.SetBool("Grazing", false);
@@ -65,9 +110,18 @@ public class AnimalMover : MonoBehaviour
             else
             {
                 waitTime -= Time.deltaTime; //otherwise reduce timer
-                animator.SetBool("Grazing", true);
+                if (animalType == "STAG")
+                {
+                    animator.SetBool("Idling", true);
+                    animator.SetBool("Grazing", false);
+                }
+                else if(animalType == "HORSE")
+                {
+                    animator.SetBool("Grazing", true);
+                    animator.SetBool("Idling", false);
+                }
                 animator.SetBool("Walking", false);
-                animator.SetBool("Idling", false);
+                
             }
         }
         
