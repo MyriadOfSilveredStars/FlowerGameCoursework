@@ -7,10 +7,13 @@ public class AnimalMover : MonoBehaviour
     private string currentState;
     private Animator animator;
 
+    private bool isFollow; //for the dog only, to check if it's following or not
+
     public NavMeshAgent agent;
     [SerializeField] private LayerMask groundLayer, playerLayer;
     [SerializeField] private GameObject player;
-    private float runDistance = 10.0f;
+    private float runDistance = 10.0f; //range where deer will start running
+    private float heelDistance = 5.0f; //range at which playmobil will heel, rather than follow
 
     //for the random patrol
     Vector3 destinationPoint;
@@ -42,6 +45,16 @@ public class AnimalMover : MonoBehaviour
 
     }
 
+    public void OnEnable()
+    {
+        DogPetter.DogPetted += MakeFollow;
+    }
+
+    public void OnDisable()
+    {
+        DogPetter.DogPetted -= MakeFollow;
+    }
+
     void Update()
     {
         switch (animalType)
@@ -68,8 +81,16 @@ public class AnimalMover : MonoBehaviour
                 break;
 
             case "DOG":
-                //logic to let dog wander around
-                //or be following the player
+                if (!isFollow) //the dog will wander around
+                {
+                    animator.SetBool("Walking", true);
+                    PatrolField();
+                }
+                else //unless instructed to follow the player
+                {
+                    animator.SetBool("Walking", true);
+                    FollowPlayer();
+                }
                 break;
         }
         
@@ -87,6 +108,39 @@ public class AnimalMover : MonoBehaviour
         Vector3 dirToPlayer = transform.position - player.transform.position; //locate the player's direction
         Vector3 newPos = transform.position + dirToPlayer; //move away from that direction
         agent.SetDestination(newPos); //move the agent
+    }
+
+    public void MakeFollow(bool following)
+    {
+        if (following == true)
+        {
+            isFollow = true;
+        }
+        else if (following == false)
+        {
+            isFollow = false;
+        }
+    }
+
+    public void FollowPlayer()
+    {
+        float distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+        if (distanceFromPlayer <= heelDistance)
+        {
+            animator.SetBool("Idling", true);
+            animator.SetBool("Walking", false);
+        }
+        else //stops dog from pushing you around
+        {
+            animator.SetBool("Idling", false);
+            animator.SetBool("Walking", true);
+            Vector3 dirToPlayer = transform.position - player.transform.position; //locate the player's direction
+            Vector3 newPos = transform.position - dirToPlayer; //move towards that direction
+            agent.SetDestination(newPos); //move the agent
+        }
+
+        
     }
 
     public void PatrolField()
@@ -119,6 +173,10 @@ public class AnimalMover : MonoBehaviour
                 {
                     animator.SetBool("Grazing", true);
                     animator.SetBool("Idling", false);
+                }
+                else if(animalType == "DOG")
+                {
+                    animator.SetBool("Idling", true);
                 }
                 animator.SetBool("Walking", false);
                 
