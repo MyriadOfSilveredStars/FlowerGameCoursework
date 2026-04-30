@@ -13,7 +13,8 @@ public class AnimalMover : MonoBehaviour
     [SerializeField] private LayerMask groundLayer, playerLayer;
     [SerializeField] private GameObject player;
     private float runDistance = 10.0f; //range where deer will start running
-    private float heelDistance = 5.0f; //range at which playmobil will heel, rather than follow
+    private float heelDistance = 3.0f; //range at which playmobil will heel, rather than follow
+    private float catchUpDistance = 6.0f; //rnage at which the dog needs to start running
 
     //for the random patrol
     Vector3 destinationPoint;
@@ -130,11 +131,24 @@ public class AnimalMover : MonoBehaviour
         {
             animator.SetBool("Idling", true);
             animator.SetBool("Walking", false);
+            animator.SetBool("Running", false);
+        }
+        else if(distanceFromPlayer >= catchUpDistance)
+        {
+            animator.SetBool("Idling", false);
+            animator.SetBool("Walking", false);
+            animator.SetBool("Running", true);
+            agent.speed = 6f;
+            Vector3 dirToPlayer = transform.position - player.transform.position; //locate the player's direction
+            Vector3 newPos = transform.position - dirToPlayer; //move towards that direction
+            agent.SetDestination(newPos); //move the agent
         }
         else //stops dog from pushing you around
         {
             animator.SetBool("Idling", false);
             animator.SetBool("Walking", true);
+            animator.SetBool("Running", false);
+            agent.speed = 3f;
             Vector3 dirToPlayer = transform.position - player.transform.position; //locate the player's direction
             Vector3 newPos = transform.position - dirToPlayer; //move towards that direction
             agent.SetDestination(newPos); //move the agent
@@ -174,7 +188,7 @@ public class AnimalMover : MonoBehaviour
                     animator.SetBool("Grazing", true);
                     animator.SetBool("Idling", false);
                 }
-                else if(animalType == "DOG")
+                else if(animalType == "DOG" && !isFollow)
                 {
                     animator.SetBool("Idling", true);
                 }
