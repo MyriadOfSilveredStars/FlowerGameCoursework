@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea17852f8a3b39ea83814cb32ab16ac, type: 3}
+  m_Name: Wildflower
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  itemName: Wildflowers
+  itemDescription: "Wildflowers\n...\nNo matter where or how or why, these blooms
+    will find a way to thrive.\nSell Price: \xA33"
+  inventoryIcon: {fileID: 21300000, guid: 1451208828e8881ac85174f311cbcf0b, type: 3}
+  prefab: {fileID: 4010819321259847453, guid: da2ed731158c3e24aa7361e5b87474a4, type: 3}
+  flowerSO: {fileID: 11400000}
+  growTime: 0
+  buyPrice: 0
+  sellPrice: 3
+  isFlower: 1
+  isBouquet: 0
+  isSeed: 0
+  bouquetContents: []

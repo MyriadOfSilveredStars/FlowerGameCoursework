@@ -54,6 +54,12 @@ public class ShopManager : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        moneyText.text = "£" + inventoryManager.money.ToString();
+        
+    }
+
     void OnEnable()
     {
         SellBuyButton.GoToSellMenu += ChangeMenu;

@@ -46,6 +46,11 @@ public class SellingManager : MonoBehaviour
         SellBuyButton.GoToBuyMenu -= ChangeToBuy;
     }
 
+    void Update()
+    {
+        moneyText.text = "£" + inventoryManager.money.ToString();  
+    }
+
     public void AddBouquets(ItemSO bouquetItem)
     {
         //to be called when a bouquet item is added to the inventory
