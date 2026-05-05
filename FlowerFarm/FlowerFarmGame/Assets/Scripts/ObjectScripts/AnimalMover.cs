@@ -178,6 +178,7 @@ public class AnimalMover : MonoBehaviour
             else
             {
                 waitTime -= Time.deltaTime; //otherwise reduce timer
+                animator.SetBool("Idling", true);
                 if (animalType == "STAG")
                 {
                     animator.SetBool("Idling", true);
