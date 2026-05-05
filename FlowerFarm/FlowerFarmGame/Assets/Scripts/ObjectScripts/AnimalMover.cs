@@ -165,7 +165,7 @@ public class AnimalMover : MonoBehaviour
         animator.SetBool("Grazing", false);
         animator.SetBool("Idling", false);
 
-        if(Vector3.Distance(transform.position, moveSpots[randomSpot].position) < 1f)
+        if(Vector3.Distance(transform.position, moveSpots[randomSpot].position) < 2f)
         {
             if(waitTime <= 0) //is it time for the animal to move on
             {
@@ -179,6 +179,7 @@ public class AnimalMover : MonoBehaviour
             {
                 waitTime -= Time.deltaTime; //otherwise reduce timer
                 animator.SetBool("Idling", true);
+                animator.SetBool("Walking", false);
                 if (animalType == "STAG")
                 {
                     animator.SetBool("Idling", true);
