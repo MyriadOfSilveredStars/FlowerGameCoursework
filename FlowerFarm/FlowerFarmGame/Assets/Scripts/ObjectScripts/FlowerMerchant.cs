@@ -92,6 +92,7 @@ public class FlowerMerchant : MonoBehaviour, IInteractable
 
     public void changeAnimation(bool facing)
     {
+        animator = GameObject.Find("Samiarose").GetComponent<Animator>();
         if (facing)
         {
             animator.SetBool("Talking", true);
