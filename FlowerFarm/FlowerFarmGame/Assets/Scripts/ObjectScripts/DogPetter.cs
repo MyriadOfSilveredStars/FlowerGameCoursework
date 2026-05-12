@@ -15,6 +15,7 @@ public class DogPetter : MonoBehaviour, IInteractable
 {
     private bool isFollow;
     public static event Action<bool> DogPetted;
+    public AudioSource dogWoof;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class DogPetter : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
+        dogWoof.Play();
         if (isFollow == false)
         {
             isFollow = true;

@@ -50,8 +50,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void SubscribeActionValuesToInputEvents()
     {
-        movementAction.performed += inputInfo => MovementInput = inputInfo.ReadValue<Vector2>();
-        movementAction.canceled += inputInfo => MovementInput = Vector2.zero;
+        movementAction.performed += inputInfo => MovementInput = inputInfo.ReadValue<Vector2>(); 
+        movementAction.canceled += inputInfo => MovementInput = Vector2.zero; 
 
 
         rotationAction.performed += inputInfo => RotationInput = inputInfo.ReadValue<Vector2>();

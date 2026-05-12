@@ -9,6 +9,8 @@ public class TransitionScene : MonoBehaviour
     private int cooldownSeconds;
     private int sceneNum;
 
+    public AudioSource end;
+
     void Start()
     {
         cooldownSeconds = 300; //given time to read the dialogue
@@ -66,6 +68,12 @@ public class TransitionScene : MonoBehaviour
                 deactivateScenes();
                 dialogueScenes[3].SetActive(true);
                 sceneNum = 4;
+                break;
+            case "END":
+                end.Play();
+                deactivateScenes();
+                dialogueScenes[4].SetActive(true);
+                sceneNum = 5;
                 break;
         }
 

@@ -74,7 +74,7 @@ public class DayManager : MonoBehaviour, IInteractable
                 }
                 else
                 {
-                    Debug.Log("Skipping to the next day...");
+                    Debug.Log("Skipping to the next day..."); //holding wrong bouquet skips to next day
                     hazelThoughts.NotAMatch();
                     nextDay();
                 }
@@ -83,14 +83,14 @@ public class DayManager : MonoBehaviour, IInteractable
             else
             {
                 Debug.Log("Skipping to the next day...");
-                hazelThoughts.NotABouquet();
+                hazelThoughts.NotABouquet(); //not holding a bouquet goes to sleep
                 nextDay();
             }
         }
         catch
         {
             Debug.Log("Not holding a bouquet, skipping to next day instead...");
-            hazelThoughts.NothingHeld();
+            hazelThoughts.NothingHeld(); //not holding anything also skips to the next day
             nextDay();
         }
         

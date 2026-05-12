@@ -151,6 +151,7 @@ public class SeasonManager : MonoBehaviour
 
     public void EndGame() //in winter, interacting with the grave ends the game
     {
-        SceneManager.LoadScene(5);
+        MainManager.Instance.currentSeason = "END";
+        SceneManager.LoadScene(6);
     }
 }

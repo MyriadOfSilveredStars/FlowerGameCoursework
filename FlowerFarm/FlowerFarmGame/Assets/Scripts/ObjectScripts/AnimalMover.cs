@@ -127,14 +127,14 @@ public class AnimalMover : MonoBehaviour
     {
         float distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-        if (distanceFromPlayer <= heelDistance)
-        {
-            animator.SetBool("Idling", true);
+        if (distanceFromPlayer <= heelDistance) //if the dog is close enough
+        {                                       //it will start idling and stop moving                
+            animator.SetBool("Idling", true);   //this stops the dog from pushing the player around
             animator.SetBool("Walking", false);
             animator.SetBool("Running", false);
         }
-        else if(distanceFromPlayer >= catchUpDistance)
-        {
+        else if(distanceFromPlayer >= catchUpDistance) //if dog is too far
+        {                                              //it will run to catch up
             animator.SetBool("Idling", false);
             animator.SetBool("Walking", false);
             animator.SetBool("Running", true);
@@ -143,7 +143,7 @@ public class AnimalMover : MonoBehaviour
             Vector3 newPos = transform.position - dirToPlayer; //move towards that direction
             agent.SetDestination(newPos); //move the agent
         }
-        else //stops dog from pushing you around
+        else 
         {
             animator.SetBool("Idling", false);
             animator.SetBool("Walking", true);

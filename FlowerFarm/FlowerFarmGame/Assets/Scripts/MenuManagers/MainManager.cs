@@ -7,6 +7,7 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance;
     public double playerMoney;
     public string currentSeason;
+    //these variables carry across game scenes to ensure that data is not lost
 
     private void Awake()
     { 

@@ -17,9 +17,18 @@ public class TitleButtons : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
     public static event Action<string> OnOptionChosen;
     public static event Action<string, bool> OnOptionHovered;
 
+    public AudioSource buttonClickSound;
+    public AudioClip buttonClick;
+
+    private void Start()
+    {
+        buttonClickSound.clip = buttonClick;
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("The " + buttonName + " has been hovered over");
+        buttonClickSound.Play();
         OnOptionHovered?.Invoke(buttonName, true);
     }
 

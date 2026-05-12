@@ -31,6 +31,4 @@ public class ItemSO : ScriptableObject
     //if bouquet, needs this:
     public List<ItemSO> bouquetContents;
 
-    
-
 }
